@@ -14,8 +14,8 @@
   /* brand colors (exact Toyota production values) */
   --color-red-primary: #e10a1d;
   --color-red-medium: #b00716;
-  --color-red-dark: #890713;
   --color-red-darker: #d81e25;
+  --color-red-dark: #890713;
   --color-blue-primary: #007aff;
   --color-ash: #2b303b;
   /* neutrals */
@@ -58,6 +58,8 @@
   --max-width-inner: 1126px;
   --max-width-wide: 1500px;
   --max-width-narrow: 1126px;
+  /* columns container — fluid on mobile, stepped max width via the media queries below */
+  --columns-max-width: 100%;
   /* spacing scale */
   --space-3xs: 4px;
   --space-2xs: 8px;
@@ -70,6 +72,9 @@
   --space-3xl: 96px;
   /* nav height */
   --nav-height: 64px;
+  /* elevation / shadows */
+  --shadow-s: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-m: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* fallback fonts */
@@ -345,21 +350,10 @@ main > .section {
   margin: var(--space-xl) 0;
 }
 
-main > .section > div {
-  max-width: var(--max-width-content);
-  margin: auto;
-  padding: 0 var(--space-m);
-}
-
 main > .section:first-of-type {
   margin-top: 0;
 }
 
-@media (width >= 1024px) {
-  main > .section > div {
-    padding: 0 var(--space-l);
-  }
-}
 /* section metadata */
 main .section.light,
 main .section.highlight {
@@ -375,5 +369,27 @@ main .section.full-width > div {
 
 main .section.narrow > div {
   max-width: var(--max-width-narrow);
+}
+
+/* responsive container width — Bootstrap `.container`-style steps for .columns-wrapper */
+@media (width >= 768px) {
+  :root {
+    --columns-max-width: 720px;
+  }
+}
+@media (width >= 1024px) {
+  :root {
+    --columns-max-width: 960px;
+  }
+}
+@media (width >= 1392px) {
+  :root {
+    --columns-max-width: 1200px;
+  }
+}
+@media (width >= 1500px) {
+  :root {
+    --columns-max-width: 1320px;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

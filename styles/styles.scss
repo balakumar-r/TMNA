@@ -73,6 +73,9 @@
   --max-width-wide: #{$max-width-wide};
   --max-width-narrow: #{$max-width-narrow};
 
+  /* columns container — fluid on mobile, stepped max width via the media queries below */
+  --columns-max-width: 100%;
+
   /* spacing scale */
   --space-3xs: #{$space-3xs};
   --space-2xs: #{$space-2xs};
@@ -86,6 +89,10 @@
 
   /* nav height */
   --nav-height: #{$nav-height};
+
+  /* elevation / shadows */
+  --shadow-s: #{$shadow-s};
+  --shadow-m: #{$shadow-m};
 }
 
 /* fallback fonts */
@@ -348,20 +355,8 @@ main > .section {
   margin: var(--space-xl) 0;
 }
 
-main > .section > div {
-  max-width: var(--max-width-content);
-  margin: auto;
-  padding: 0 var(--space-m);
-}
-
 main > .section:first-of-type {
   margin-top: 0;
-}
-
-@media (width >= #{$bp-desktop}) {
-  main > .section > div {
-    padding: 0 var(--space-l);
-  }
 }
 
 /* section metadata */
@@ -379,4 +374,29 @@ main .section.full-width > div {
 
 main .section.narrow > div {
   max-width: var(--max-width-narrow);
+}
+
+/* responsive container width — Bootstrap `.container`-style steps for .columns-wrapper */
+@media (width >= #{$bp-sm}) {
+  :root {
+    --columns-max-width: #{$container-width-sm};
+  }
+}
+
+@media (width >= #{$bp-md}) {
+  :root {
+    --columns-max-width: #{$container-width-md};
+  }
+}
+
+@media (width >= #{$bp-lg}) {
+  :root {
+    --columns-max-width: #{$container-width-lg};
+  }
+}
+
+@media (width >= #{$bp-xl}) {
+  :root {
+    --columns-max-width: #{$container-width-xl};
+  }
 }
