@@ -1,6 +1,4 @@
-const {
-  src, dest, watch, series, parallel,
-} = require('gulp');
+const { src, dest, watch, series } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const sourcemaps = require('gulp-sourcemaps');
 const plumber = require('gulp-plumber');
@@ -17,19 +15,6 @@ function styles() {
     .pipe(browserSync.stream({ match: '**/*.css' })); // inject CSS into browser
 }
 
-// Compile global SCSS in styles/ (exclude partials starting with _) into styles/*.css
-function globalStyles() {
-  return src('styles/[^_]*.scss', { base: 'styles', sourcemaps: true })
-    .pipe(plumber())
-    .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
-    .pipe(sourcemaps.write('.')) // writes .map file next to .css
-    .pipe(dest('styles'))
-    .pipe(browserSync.stream({ match: '**/*.css' }));
-}
-
-const buildStyles = parallel(styles, globalStyles);
-
 function serve() {
   // If you run `aem up` and it serves on http://localhost:3000 use proxy. Otherwise set BS_PROXY env to something else.
   const proxyTarget = process.env.BS_PROXY || 'http://localhost:3000';
@@ -45,13 +30,12 @@ function serve() {
 
   // Watch SCSS (including partials). When partials change we still run the styles task so dependent CSS updates.
   watch('blocks/**/*.scss', styles);
-  watch('styles/**/*.scss', globalStyles);
 
   // Watch other files (html, markup, etc.) and reload full page on changes
   watch(['blocks/**/*.html', '*.html', 'index.html']).on('change', browserSync.reload);
 }
 
-exports.styles = buildStyles;
-exports.serve = series(buildStyles, serve);
+exports.styles = styles;
+exports.serve = series(styles, serve);
 exports.watch = exports.serve;
 exports.default = exports.serve;
