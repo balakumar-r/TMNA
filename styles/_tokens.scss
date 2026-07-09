@@ -81,6 +81,13 @@ $max-width-inner:    1126px; // inner content column
 $max-width-wide:     1500px; // wide / xl container
 $max-width-narrow:   1126px; // text-heavy / reading width
 
+// Responsive container max-widths — Bootstrap `.container` replacement.
+// Stepped at the breakpoints below; consumed via `--columns-max-width`.
+$container-width-sm:  720px;   // >= $bp-sm (768)  tablet
+$container-width-md:  960px;   // >= $bp-md (1024) desktop
+$container-width-lg:  1200px;  // >= $bp-lg (1392) large desktop
+$container-width-xl:  1320px;  // >= $bp-xl (1500) wide
+
 // -----------------------------------------------------------------------------
 // Spacing scale
 // -----------------------------------------------------------------------------
@@ -93,6 +100,12 @@ $space-l:    32px;
 $space-xl:   40px;
 $space-2xl:  64px;
 $space-3xl:  96px;
+
+// -----------------------------------------------------------------------------
+// Elevation / shadows
+// -----------------------------------------------------------------------------
+$shadow-s:  0 4px 6px rgb(0 0 0 / 10%);
+$shadow-m:  0 6px 12px rgb(0 0 0 / 15%);
 
 // -----------------------------------------------------------------------------
 // Misc

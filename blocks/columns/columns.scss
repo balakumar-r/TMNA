@@ -1,0 +1,47 @@
+@use '../../styles/tokens' as *;
+
+.columns-wrapper {
+  max-width: var(--columns-max-width);
+  margin-inline: auto;
+
+  /* mobile — pad the wrapper so content doesn't stretch to the edges */
+  @media (width <= $bp-sm) {
+    padding: 0 16px;
+  }
+}
+
+.columns {
+  img {
+    width: 100%;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+
+    > div {
+      order: 1;
+    }
+
+    > .columns-img-col {
+      order: 0;
+
+      img {
+        display: block;
+      }
+    }
+  }
+
+  @media (width >= 900px) {
+    > div {
+      align-items: center;
+      flex-direction: unset;
+      gap: 24px;
+
+      > div {
+        flex: 1;
+        order: unset;
+      }
+    }
+  }
+}

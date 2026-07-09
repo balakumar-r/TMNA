@@ -1,19 +1,16 @@
 @use '../../styles/tokens' as *;
 
 footer {
-	background-color: var(--light-color);
+	//background-color: var(--light-color);
 	font-size: var(--body-font-size-xs);
 	.footer {
-		>div {
-			margin: auto;
-			max-width: 1200px;
-			padding: 40px 24px 24px;
-		}
 		p {
 			margin: 0;
 		}
 	}
     .tmna-footer-section {
+        background: #f6f6f6;
+        padding: 40px 0;
         ul {
             list-style: none;
             padding: 0;
@@ -148,13 +145,4 @@ footer {
             }
         }
 }
-}
-@media (width >= #{$bp-desktop}) {
-	footer {
-		.footer {
-			>div {
-				padding: 40px 32px 24px;
-			}
-		}
-	}
 }
