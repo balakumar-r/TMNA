@@ -1,0 +1,112 @@
+// =============================================================================
+// Design Tokens — Toyota (TMNA)
+// -----------------------------------------------------------------------------
+// Pure SCSS variables only. No CSS is emitted from this file.
+// These are the single source of truth; `styles.scss` maps them to the
+// `:root` CSS custom properties that blocks consume via `var(--...)`.
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Brand colors
+// -----------------------------------------------------------------------------
+// Exact values from Toyota production CSS.
+$color-red-primary:   #e10a1d; // Toyota Red
+$color-red-medium:    #b00716; // hover
+$color-red-darker:    #d81e25; // hover
+$color-red-dark:      #890713; // active / pressed
+$color-blue-primary:  #007aff; // focus / interactive accent
+$color-ash:           #2b303b;
+
+// -----------------------------------------------------------------------------
+// Neutrals (Toyota named grays)
+// -----------------------------------------------------------------------------
+$color-black:         #000;
+$color-white:         #fff;
+$color-gray-dark:     #58595b;
+$color-gray-medium:   #767676;
+$color-gray-light:    #d8d8d8;
+$color-off-white:     #f6f6f6;
+
+// -----------------------------------------------------------------------------
+// Semantic colors (consumed by blocks)
+// -----------------------------------------------------------------------------
+$color-background:  $color-white;
+$color-text:        $color-black;
+$color-light:       $color-off-white;
+$color-dark:        $color-gray-dark;
+$color-link:        $color-red-primary;
+$color-link-hover:  $color-red-medium;
+
+// -----------------------------------------------------------------------------
+// Typography
+// -----------------------------------------------------------------------------
+// Quoted as a single string so interpolation preserves the inner double quotes
+// required around the multi-word "Toyota Type" family name.
+$font-body:     '"Toyota Type", roboto, roboto-fallback, "Arial", sans-serif';
+$font-heading:  '"Toyota Type", roboto-condensed, roboto-condensed-fallback, "Arial", sans-serif';
+
+// Font weights (Toyota Type: Light/Book/Regular = 400, Semibold = 600, Bold = 700)
+$font-weight-book:      400;
+$font-weight-semibold:  600;
+$font-weight-bold:      700;
+
+// Body sizes — mobile / desktop (>= 900px)
+$body-font-size-m:   22px;
+$body-font-size-s:   19px;
+$body-font-size-xs:  17px;
+$body-font-size-m-desktop:   18px;
+$body-font-size-s-desktop:   16px;
+$body-font-size-xs-desktop:  14px;
+
+// Heading sizes — mobile / desktop (>= 900px)
+$heading-font-size-xxl:  55px;
+$heading-font-size-xl:   44px;
+$heading-font-size-l:    34px;
+$heading-font-size-m:    27px;
+$heading-font-size-s:    24px;
+$heading-font-size-xs:   22px;
+$heading-font-size-xxl-desktop:  45px;
+$heading-font-size-xl-desktop:   36px;
+$heading-font-size-l-desktop:    28px;
+$heading-font-size-m-desktop:    22px;
+$heading-font-size-s-desktop:    20px;
+$heading-font-size-xs-desktop:   18px;
+
+// -----------------------------------------------------------------------------
+// Layout — max widths (from Toyota production CSS)
+// -----------------------------------------------------------------------------
+$max-width-content:  1350px; // default centered content wrapper (.tmna-*-container)
+$max-width-inner:    1126px; // inner content column
+$max-width-wide:     1500px; // wide / xl container
+$max-width-narrow:   1126px; // text-heavy / reading width
+
+// -----------------------------------------------------------------------------
+// Spacing scale
+// -----------------------------------------------------------------------------
+$space-3xs:  4px;
+$space-2xs:  8px;
+$space-xs:   12px;
+$space-s:    16px;
+$space-m:    24px;
+$space-l:    32px;
+$space-xl:   40px;
+$space-2xl:  64px;
+$space-3xl:  96px;
+
+// -----------------------------------------------------------------------------
+// Misc
+// -----------------------------------------------------------------------------
+$nav-height:  64px;
+
+// Responsive breakpoints — Toyota brand production values (Bootstrap-style, mobile-first `min-width`)
+// xs = 0, sm = 768, md = 1024, lg = 1392, xl = 1500
+$bp-sm:   768px;   // tablet
+$bp-md:   1024px;  // desktop
+$bp-lg:   1392px;  // large desktop
+$bp-xl:   1500px;  // wide
+
+// Aliases kept for readability
+$bp-tablet:   $bp-sm;
+$bp-desktop:  $bp-md;
+$bp-wide:     $bp-lg;
