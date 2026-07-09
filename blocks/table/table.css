@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .table-container:has(.custom-table) {
   background-color: #c7e3f9;
   padding: 48px 0;
@@ -11,7 +10,7 @@
   border-collapse: collapse;
   padding: 20px;
 }
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .custom-table {
     width: 100%;
     padding: 0;
@@ -20,11 +19,12 @@
 .custom-table .table {
   border-spacing: 10px;
 }
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .custom-table .table {
-    overflow: scroll;
+    overflow-x: scroll;
     table-layout: initial;
     display: block;
+    padding: 10px;
   }
 }
 .custom-table .table__head .table__row {
@@ -42,7 +42,7 @@
   width: 192px;
   background-color: #e1e1e1;
 }
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .custom-table .table__head .table__row .table__cell--header:not(:first-child) {
     width: 100%;
     vertical-align: top;
@@ -60,7 +60,7 @@
 .custom-table .table__head .table__row .table__cell--header p {
   margin: 0;
 }
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .custom-table .table__head .table__row .table__cell--header p {
     width: 200px;
   }
@@ -73,7 +73,7 @@
 .custom-table .table__head .table__row .table__cell--header p:has(picture) {
   margin-bottom: 0;
 }
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .custom-table .table__head .table__row .table__cell--header p:has(picture) {
     width: 100%;
   }
@@ -136,10 +136,4 @@
 .custom-table .table__body .table__cell--body p {
   font-size: 24px;
   font-weight: bold;
-}
-.custom-table .table__body .table__cell--body p:contains("✓") {
-  color: #00a651;
-}
-.custom-table .table__body .table__cell--body p:contains("—") {
-  color: #d32f2f;
 }/*# sourceMappingURL=table.css.map */
