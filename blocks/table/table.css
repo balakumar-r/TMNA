@@ -55,6 +55,18 @@
 .table table td p + p {
   margin-top: 0.25em;
 }
+.table table th ul,
+.table table td ul,
+.table table th ol,
+.table table td ol {
+  margin: 0;
+  padding-left: 1.2em;
+}
+.table table th li,
+.table table td li {
+  margin: 0;
+  padding: 0;
+}
 .table table th a, .table table th a:visited,
 .table table td a,
 .table table td a:visited {
