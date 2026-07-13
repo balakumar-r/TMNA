@@ -170,6 +170,11 @@ async function loadLazy(doc) {
 
   loadFooter(doc.querySelector('footer'));
 
+  // register the cookie-consent listener site-wide so the footer's
+  // "Cookie Consent Options" button opens the modal on every page
+  import('../blocks/cookie-consent/cookie-consent.js');
+  loadCSS(`${window.hlx.codeBasePath}/blocks/cookie-consent/cookie-consent.css`);
+
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 }
