@@ -17,6 +17,8 @@
   --color-red-darker: #d81e25;
   --color-red-dark: #890713;
   --color-blue-primary: #007aff;
+  --color-red-privacy: #ca1f00;
+  --color-red-cta: #eb0a1e;
   --color-ash: #2b303b;
   /* neutrals */
   --color-black: #000;
@@ -392,3 +394,5 @@ main .section.narrow > div {
     --columns-max-width: 1320px;
   }
 }
+
+/*# sourceMappingURL=styles.css.map */

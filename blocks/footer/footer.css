@@ -5,7 +5,7 @@ footer .footer p {
   margin: 0;
 }
 footer .tmna-footer-section {
-  background: #f6f6f6;
+  background: var(--color-off-white);
   padding: 40px 0;
 }
 footer .tmna-footer-section ul {
@@ -41,7 +41,7 @@ footer .tmna-footer-section ul li:last-child {
   }
 }
 footer .tmna-footer-section ul li a {
-  color: #58595b;
+  color: var(--color-gray-dark);
   transition: color 0.3s;
   font-size: 1rem;
 }

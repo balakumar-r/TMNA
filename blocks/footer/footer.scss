@@ -9,7 +9,7 @@ footer {
 		}
 	}
     .tmna-footer-section {
-        background: #f6f6f6;
+        background: var(--color-off-white);
         padding: 40px 0;
         ul {
             list-style: none;
@@ -38,7 +38,7 @@ footer {
                     margin-bottom: 0;
                 }
                 a {
-                    color: #58595b;
+                    color: var(--color-gray-dark);
                     transition: color .3s;
                     font-size: 1rem;
                     &:hover {
