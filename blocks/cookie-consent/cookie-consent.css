@@ -13,12 +13,12 @@
 }
 
 .cookie-consent-dialog {
-  background: #fff;
+  background: var(--color-white);
   width: 100%;
   max-width: 620px;
   max-height: 90vh;
   overflow-y: auto;
-  border-top: 4px solid #eb0a1e;
+  border-top: 4px solid var(--color-red);
   border-radius: 2px;
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@
   align-items: center;
   gap: 16px;
   padding: 24px 32px;
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid var(--color-gray-light);
   flex-shrink: 0;
 }
 .cookie-consent-header h2 {
@@ -42,7 +42,7 @@
   display: inline-flex;
   width: 48px;
   height: 48px;
-  background: #eb0a1e;
+  background: var(--color-red-cta);
   border-radius: 4px;
   align-items: center;
   justify-content: center;
@@ -70,7 +70,7 @@
 }
 
 .cookie-consent-category {
-  border: 1px solid #d8d8d8;
+  border: 1px solid var(--color-gray-light);
   border-radius: 2px;
   padding: 20px 24px;
   margin-bottom: 20px;
@@ -118,17 +118,17 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--color-white);
   transition: transform 0.2s ease;
 }
 .cookie-consent-toggle .cookie-consent-toggle-label {
-  color: #fff;
+  color: var(--color-white);
   font-size: 11px;
   font-weight: 700;
   margin-left: auto;
 }
 .cookie-consent-toggle.is-on {
-  background: #eb0a1e;
+  background: var(--color-red-cta);
 }
 .cookie-consent-toggle.is-on::after {
   transform: translateX(24px);
@@ -142,7 +142,7 @@
 .cookie-consent-footer {
   display: flex;
   gap: 0;
-  border-top: 1px solid #d8d8d8;
+  border-top: 1px solid var(--color-gray-light);
   flex-shrink: 0;
 }
 .cookie-consent-footer button {
@@ -156,20 +156,20 @@
 }
 
 .cookie-consent-save {
-  background: #eb0a1e;
-  color: #fff;
+  background: var(--color-red-cta);
+  color: var(--color-white);
 }
 .cookie-consent-save:hover, .cookie-consent-save:focus {
-  background: rgb(195.8653061224, 8.3346938776, 25.0040816327);
+  background: var(--color-red-cta);
 }
 
 .cookie-consent-cancel {
-  background: #fff;
-  color: #000;
-  border-left: 1px solid #d8d8d8;
+  background: var(--color-white);
+  color: var(--color-black);
+  border-left: 1px solid var(--color-gray-light);
 }
 .cookie-consent-cancel:hover, .cookie-consent-cancel:focus {
-  background: #f6f6f6;
+  background: var(--color-off-white);
 }
 
 @media (max-width: 47.9375em) {

@@ -34,6 +34,11 @@
   --color-gray-medium: #{$color-gray-medium};
   --color-gray-light: #{$color-gray-light};
   --color-off-white: #{$color-off-white};
+  --color-grey-bg: #{$color-grey-bg};
+  --color-grey-bg-dark: #{$color-grey-bg-dark};
+  --color-grey-border: #{$color-grey-border};
+  --color-vg-text: #{$color-vg-text};
+  --color-vg-text-light: #{$color-vg-text-light};
 
   /* brand aliases (kept so existing accent buttons keep working) */
   --color-brand-primary: #{$color-red-primary};
