@@ -32,6 +32,9 @@
   --color-grey-border: #c6c0c0;
   --color-vg-text: #2b303b;
   --color-vg-text-light: #767676;
+  --color-gray-lighter: #dddddd;
+  --color-black-light: #1a1a1a;
+  --color-gray-secondary: #777777;
   /* brand aliases (kept so existing accent buttons keep working) */
   --color-brand-primary: #e10a1d;
   --color-brand-primary-dark: #b00716;
