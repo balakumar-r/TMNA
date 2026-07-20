@@ -73,7 +73,6 @@
   }
 
   // Legal disclaimer text
-  
   &-disclaimer {
     margin: 0;
     font-size: 10px;
@@ -138,7 +137,7 @@
     color: #ccc;
     user-select: none;
 
-    @media (max-width: $bp-sm) {
+    @media (max-width: $screen-md) {
       font-size: 12px;
       opacity: .6;
     }
