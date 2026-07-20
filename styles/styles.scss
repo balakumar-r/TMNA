@@ -33,6 +33,10 @@
   --color-gray-background-light: #{$color-gray-background-light};
   --color-text-light: #{$color-text-light};
   --color-blue-light: #{$color-blue-light};
+  --color-link-column: #{$color-link-column};
+  --color-border: #{$color-border};
+  --color-focus-outline: #{$color-focus-outline};
+  --color-tag-column: #{$color-tag-column};
 
   /* neutrals */
   --color-black: #{$color-black};
@@ -49,6 +53,8 @@
   --color-gray-lighter: #{$color-gray-lighter};
   --color-black-light: #{$color-black-light};
   --color-gray-secondary: #{$color-gray-secondary};
+  --color-section-bg: #{$color-section-bg};
+  --color-chevron-expand: #{$color-chevron-expand};
 
   /* brand aliases (kept so existing accent buttons keep working) */
   --color-brand-primary: #{$color-red-primary};
@@ -83,6 +89,9 @@
   --heading-font-size-m: #{$heading-font-size-m};
   --heading-font-size-s: #{$heading-font-size-s};
   --heading-font-size-xs: #{$heading-font-size-xs};
+
+  /* transitions */
+  --chevron-transition: #{$chevron-transition};
 
   /* layout — max widths */
   --max-width-content: #{$max-width-content};
