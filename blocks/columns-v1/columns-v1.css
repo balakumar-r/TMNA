@@ -39,7 +39,7 @@
 }
 .columns-v1 p {
   margin: 0 0 var(--space-s);
-  color: var(--color-body);
+  color: var(--color-text-black);
   font-size: 24px;
   line-height: 1.5;
 }
