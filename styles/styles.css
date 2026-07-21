@@ -27,6 +27,10 @@
   --color-gray-background-light: #cccccc;
   --color-text-light: #0e0e0e;
   --color-blue-light: #c7e3f9;
+  --color-link-column: #b3261e;
+  --color-border: #d9d9d9;
+  --color-focus-outline: #2563eb;
+  --color-tag-column: #dbe7ff;
   /* neutrals */
   --color-black: #000000;
   --color-white: #ffffff;
@@ -42,6 +46,8 @@
   --color-gray-lighter: #dddddd;
   --color-black-light: #1a1a1a;
   --color-gray-secondary: #777777;
+  --color-section-bg: #cfe2f3;
+  --color-chevron-expand: #b8b8b8;
   /* brand aliases (kept so existing accent buttons keep working) */
   --color-brand-primary: #e10a1d;
   --color-brand-primary-dark: #b00716;
@@ -70,6 +76,8 @@
   --heading-font-size-m: 22px;
   --heading-font-size-s: 20px;
   --heading-font-size-xs: 18px;
+  /*chevron transition duration*/
+  --chevron-transition: transform 0.3s ease;
   /* layout — max widths */
   --max-width-content: 1350px;
   --max-width-inner: 1126px;
