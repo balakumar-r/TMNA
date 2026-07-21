@@ -1,33 +1,40 @@
-.columns > div {
-  display: flex;
-  flex-direction: column;
+@charset "UTF-8";
+.columns-wrapper {
+  max-width: var(--columns-max-width);
+  margin-inline: auto;
+  /* mobile — pad the wrapper so content doesn't stretch to the edges */
+}
+@media (width <= 768px) {
+  .columns-wrapper {
+    padding: 0 16px;
+  }
 }
 
 .columns img {
   width: 100%;
 }
-
+.columns > div {
+  display: flex;
+  flex-direction: column;
+}
 .columns > div > div {
   order: 1;
 }
-
 .columns > div > .columns-img-col {
   order: 0;
 }
-
 .columns > div > .columns-img-col img {
   display: block;
 }
-
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
     flex-direction: unset;
     gap: 24px;
   }
-
   .columns > div > div {
     flex: 1;
     order: unset;
   }
 }
+/*# sourceMappingURL=columns.css.map */

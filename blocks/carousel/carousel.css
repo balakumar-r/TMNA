@@ -59,7 +59,7 @@ main .section .carousel-wrapper {
     overflow: hidden;
 }
 
-@media (width >= 600px) {
+@media (width >= 768px) {
     .carousel .carousel-slide {
         /* matches the 1920x700 wide banner ratio on larger screens */
         aspect-ratio: 1920 / 700;
@@ -111,7 +111,7 @@ main .section .carousel-wrapper {
     max-width: min(90%, 900px);
     margin: 0;
     padding: 0 24px;
-    color: white;
+    color: var(--color-white);
     text-align: center;
     text-shadow: 0 1px 12px rgb(0 0 0 / 45%);
 
@@ -185,12 +185,12 @@ main .section .carousel-wrapper {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: 33px;
+    height: 33px;
     margin: 0;
     padding: 0;
     border-radius: 50%;
-    color: black;
+    color: var(--color-black);
     background: rgb(245 245 245 / 60%);
     backdrop-filter: blur(6px);
     cursor: pointer;
@@ -198,6 +198,7 @@ main .section .carousel-wrapper {
     transition:
         background-color 0.2s ease,
         transform 0.2s ease;
+    border: none;
 }
 
 .carousel .carousel-navigation-buttons button svg {
@@ -222,7 +223,7 @@ main .section .carousel-wrapper {
 
 /* --- interaction & active states (after all base rules) --- */
 .carousel .carousel-navigation-buttons button:hover {
-    background-color: white;
+    background-color: var(--color-white);
     transform: scale(1.06);
 }
 
@@ -233,16 +234,16 @@ main .section .carousel-wrapper {
 /* active indicator stretches into a pill */
 .carousel .carousel-slide-indicator button:disabled,
 .carousel .carousel-slide-indicator button[aria-current="true"] {
-    background-color: white;
+    background-color: var(--color-white);
 }
 
 .carousel .carousel-navigation-buttons button:focus-visible,
 .carousel .carousel-slide-indicator button:focus-visible {
-    outline: 2px solid white;
+    outline: 2px solid var(--color-white);
     outline-offset: 3px;
 }
 
-@media (width >= 600px) {
+@media (width >= 768px) {
     .carousel .carousel-navigation-buttons {
         left: 28px;
         right: 28px;
@@ -253,11 +254,10 @@ main .section .carousel-wrapper {
     }
 }
 
-@media (width >= 900px) {
+@media (width >= 1024px) {
     .carousel .carousel-navigation-buttons button {
         width: 56px;
         height: 56px;
-        border: 0;
     }
 }
 
