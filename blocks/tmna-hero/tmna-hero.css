@@ -1,0 +1,24 @@
+.section.tmna-hero-container {
+  min-height: 144px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media (width >= 768px) {
+  .section.tmna-hero-container {
+    min-height: 257px;
+  }
+}
+@media (width >= 1024px) {
+  .section.tmna-hero-container {
+    min-height: 320px;
+  }
+}
+.section.tmna-hero-container.with-form {
+  min-height: 609px;
+}
+@media (width >= 768px) {
+  .section.tmna-hero-container.with-form {
+    min-height: 640px;
+  }
+}/*# sourceMappingURL=tmna-hero.css.map */

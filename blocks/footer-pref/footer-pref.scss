@@ -1,0 +1,132 @@
+@use '../../styles/tokens' as *;
+
+.footer-pref {
+  border-top: 1px solid var(--color-white);
+  padding: 38px 64px;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  @media (max-width: $bp-sm) {
+    padding: 20px 16px;
+  }
+
+  // Layout bar mapping
+  &-bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+
+    @media (max-width: $bp-sm) {
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    &-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    &-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+
+      @media (max-width: $bp-sm) {
+        align-items: flex-start;
+      }
+    }
+  }
+
+  // Standard Links
+  &-nav-link {
+    font-size: 13px;
+    color: var(--color-black) !important;
+    text-decoration: none;
+    line-height: 1.4;
+
+    &:hover {
+      color: var(--color-red-primary) !important;
+      text-decoration: none;
+    }
+  }
+
+  // Pipe separator formatting
+  &-sep {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--color-gray-dark);
+    user-select: none;
+    line-height: 1.4;
+  }
+
+  // Privacy Actions & Toggle Indicator
+  &-privacy-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--color-red-primary) !important;
+    text-decoration: none;
+    line-height: 1.4;
+
+    &:hover {
+      text-decoration: none;
+      color: var(--color-red-dark);
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 18px;
+      flex-shrink: 0;
+      background-color: var(--color-white);
+      border-radius: 9px;
+      background-image: none; // e.g. url('/icons/privacy-choices-toggle.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      vertical-align: middle;
+    }
+  }
+
+  // Cookie settings link
+  &-cookie-link {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--color-gray-dark);
+    text-decoration: none;
+    margin: 0;
+    padding-right: 30px;
+  }
+
+  // Copyright Copy lines
+  &-copyright {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &-copy-line {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--color-gray-dark);
+
+    @media (max-width: $bp-sm) {
+      font-size: 11px;
+    }
+  }
+}
