@@ -31,6 +31,11 @@ $color-link-column:   #b3261e;
 $color-border:        #d9d9d9;
 $color-focus-outline: #2563eb;
 $color-tag-column:    #dbe7ff;
+$color-gray-text:     #4a4a4a;
+$color-light-gray:    #666666;
+$color-golden-brown:  #b9a074;
+$color-silver:        #adadad;
+$color-text-muted:    #939393;
 
 // -----------------------------------------------------------------------------
 // Neutrals (Toyota named grays)
@@ -51,6 +56,7 @@ $color-black-light:   #1a1a1a;
 $color-gray-secondary:#777777;
 $color-section-bg:    #cfe2f3;
 $color-chevron-expand:#b8b8b8;
+
 
 // -----------------------------------------------------------------------------
 // Semantic colors (consumed by blocks)
@@ -96,6 +102,10 @@ $heading-font-size-l-desktop:    34px;
 $heading-font-size-m-desktop:    27px;
 $heading-font-size-s-desktop:    24px;
 $heading-font-size-xs-desktop:   22px;
+
+// Chevron transition (used by accordion-v1)
+$chevron-transition: transform 0.3s ease;
+
 
 // -----------------------------------------------------------------------------
 // Layout — max widths (from Toyota production CSS)
