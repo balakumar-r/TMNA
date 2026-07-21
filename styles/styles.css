@@ -76,6 +76,8 @@
   --heading-font-size-m: 22px;
   --heading-font-size-s: 20px;
   --heading-font-size-xs: 18px;
+  /*chevron transition duration*/
+  --chevron-transition: transform 0.3s ease;
   /* layout — max widths */
   --max-width-content: 1350px;
   --max-width-inner: 1126px;

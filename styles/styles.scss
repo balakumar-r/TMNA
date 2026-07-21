@@ -90,6 +90,9 @@
   --heading-font-size-s: #{$heading-font-size-s};
   --heading-font-size-xs: #{$heading-font-size-xs};
 
+  /* transitions */
+  --chevron-transition: #{$chevron-transition};
+
   /* layout — max widths */
   --max-width-content: #{$max-width-content};
   --max-width-inner: #{$max-width-inner};

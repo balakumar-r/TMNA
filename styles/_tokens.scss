@@ -98,6 +98,10 @@ $heading-font-size-m-desktop:    27px;
 $heading-font-size-s-desktop:    24px;
 $heading-font-size-xs-desktop:   22px;
 
+// Chevron transition (used by accordion-v1)
+$chevron-transition: transform 0.3s ease;
+
+
 // -----------------------------------------------------------------------------
 // Layout — max widths (from Toyota production CSS)
 // -----------------------------------------------------------------------------
