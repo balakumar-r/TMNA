@@ -94,7 +94,7 @@
     left: 50%;
     z-index: 90;
     width: 100vw;
-    background: var(var(--color-white));
+    background: var(--color-white);
     border: 1px solid var(--color-grey-bg-dark);
     box-shadow: var(--hv1-shadow);
     opacity: 0;
@@ -158,7 +158,7 @@
 }
 
 .header-v1-col-promo ul li:nth-child(3) a {
-    color: var(var(--color-white));
+    color: var(--color-white);
     background: var(--color-text-light);
     font-size: 14px;
     font-weight: 600;
@@ -215,7 +215,7 @@
     bottom: 0;
     width: 0;
     height: 2px;
-    background: var(--color-red--cta);
+    background: var(--color-red-cta);
     transform: translateX(0%);
     transition: width 0.5s ease;
 }
@@ -571,7 +571,7 @@ a.link {
     top: 0;
     left: 0;
     bottom: 0;
-    border-left: 2px solid var(--color-red--cta);
+    border-left: 2px solid var(--color-red-cta);
     transform: scaleY(0);
     transform-origin: center;
     transition: transform 0.3s ease;
