@@ -1,66 +1,53 @@
-.card-v6-container:has(.card-v6) {
-  padding: var(--space-xl) 0;
-}
-
-.card-v6 {
+.card-v6-wrapper:has(.card-v6) {
   max-width: 1054px;
   margin: 0 auto;
-  padding: 0 35px;
+  padding: 40px 35px;
 }
-@media (width = 768px) {
-  .card-v6 {
-    padding: 0 64px;
+@media (width >= 768px) {
+  .card-v6-wrapper:has(.card-v6) {
+    padding: 40px 64px;
   }
 }
 @media (width >= 1024px) {
-  .card-v6 {
-    padding: 0;
+  .card-v6-wrapper:has(.card-v6) {
+    padding: 40px 0;
   }
 }
-.card-v6 > div {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 52px;
+
+.card-v6__row {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 40px;
 }
 @media (width >= 1024px) {
-  .card-v6 > div {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+  .card-v6__row {
+    flex-direction: row;
   }
 }
-.card-v6__card {
+.card-v6__cell {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: center;
 }
-.card-v6__image {
-  margin: 0;
-  order: -1;
-}
-.card-v6__picture {
-  display: block;
-}
-.card-v6__img {
-  display: block;
-  width: 100%;
-  height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
+@media (width >= 1024px) {
+  .card-v6__cell:first-child {
+    flex: 1 1 65%;
+  }
+  .card-v6__cell:last-child {
+    flex: 1 1 35%;
+  }
 }
 .card-v6__title {
-  margin: 0;
-  color: #000000;
-  font-family: "Toyota Type", roboto-condensed, roboto-condensed-fallback, "Arial", sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 36px;
+  margin: 0 0 20px;
+  color: var(--color-red-darker);
+  font-size: 33px;
+  font-weight: var(--font-weight-bold);
+  line-height: 38px;
   letter-spacing: 1px;
 }
-.card-v6__text {
-  margin: 0;
-  color: #000000;
-  font-family: "Toyota Type", roboto, roboto-fallback, "Arial", sans-serif;
-  font-weight: var(--font-weight-book);
+.card-v6__description {
+  margin: 0 0 20px;
+  color: var(--color-text-light);
   font-size: 24px;
   line-height: 36px;
 }
@@ -69,35 +56,34 @@
 }
 .card-v6__cta a:-moz-any-link {
   color: var(--color-red-darker);
+  font-weight: var(--font-weight-book);
   font-size: 24px;
-  line-height: 36px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   text-decoration: none;
 }
 .card-v6__cta a:any-link {
   color: var(--color-red-darker);
+  font-weight: var(--font-weight-book);
   font-size: 24px;
-  line-height: 36px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   text-decoration: none;
 }
 .card-v6__cta a:-moz-any-link:hover, .card-v6__cta a:-moz-any-link:focus {
-  color: var(--color-red-darker);
   text-decoration: none;
 }
 .card-v6__cta a:any-link:hover, .card-v6__cta a:any-link:focus {
-  color: var(--color-red-darker);
   text-decoration: none;
 }
-.card-v6__cta a:-moz-any-link:hover::after, .card-v6__cta a:-moz-any-link:focus::after {
-  height: 2px;
-  background: var(--color-red-primary);
-  transform: translateY(3px);
+.card-v6__media {
+  margin: 0;
 }
-.card-v6__cta a:any-link:hover::after, .card-v6__cta a:any-link:focus::after {
-  height: 2px;
-  background: var(--color-red-primary);
-  transform: translateY(3px);
+.card-v6__picture {
+  display: block;
+}
+.card-v6__image {
+  display: block;
+  width: 100%;
+  height: auto;
 }/*# sourceMappingURL=card-v6.css.map */

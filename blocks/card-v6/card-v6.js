@@ -1,47 +1,47 @@
 const BLOCK = 'card-v6';
 
 /**
- * Adds a BEM element class (`block__element`) to a node, if present.
- * @param {Element|null} el The element to decorate
- * @param {string} element The BEM element name
+ * Decorates the text/media inside a single cell with BEM class names.
+ * A cell may contain an image, a heading, and one or more paragraphs.
+ * @param {Element} cell The cell (direct child of the row)
  */
-function addElementClass(el, element) {
-  if (el) {
-    el.classList.add(`${BLOCK}__${element}`);
-  }
-}
+function decorateCell(cell) {
+  cell.classList.add(`${BLOCK}__cell`);
 
-/**.
- * @param {Element} card The card element
- */
-function decorateCard(card) {
-  addElementClass(card, 'card');
-
-  // Image (author uploads render as <picture> inside a <p>).
-  const picture = card.querySelector('picture');
+  // --- Media ---
+  const picture = cell.querySelector('picture');
   if (picture) {
-    const imageWrapper = picture.closest('p');
-    addElementClass(imageWrapper, 'image');
-    addElementClass(picture, 'picture');
-    addElementClass(picture.querySelector('img'), 'img');
+    picture.classList.add(`${BLOCK}__picture`);
+    const img = picture.querySelector('img');
+    if (img) img.classList.add(`${BLOCK}__image`);
+    // a <p> that only wraps the picture is a media container, not body copy
+    const mediaWrap = picture.closest('p');
+    if (mediaWrap && mediaWrap.textContent.trim() === '') {
+      mediaWrap.classList.add(`${BLOCK}__media`);
+    }
   }
 
-  // Title (authored as a heading; may or may not contain <strong>).
-  addElementClass(card.querySelector('h1, h2, h3, h4, h5, h6'), 'title');
+  // --- Heading ---
+  const heading = cell.querySelector('h1, h2, h3, h4, h5, h6');
+  if (heading) heading.classList.add(`${BLOCK}__title`);
 
-  // CTA link and its wrapping paragraph.
-  const link = card.querySelector('a');
-  if (link) {
-    addElementClass(link.closest('p'), 'cta');
-    addElementClass(link, 'link');
-  }
+  // --- Paragraphs ---
+  cell.querySelectorAll('p').forEach((p) => {
+    if (p.classList.contains(`${BLOCK}__media`)) return; // already handled
 
-  // Remaining paragraphs are body copy.
-  card.querySelectorAll(':scope > p').forEach((p) => {
-    if (!p.classList.contains(`${BLOCK}__image`)
-      && !p.classList.contains(`${BLOCK}__title`)
-      && !p.classList.contains(`${BLOCK}__cta`)) {
-      addElementClass(p, 'text');
+    const link = p.querySelector('a');
+    if (link) {
+      // paragraph wrapping a link → call to action
+      p.classList.add(`${BLOCK}__cta`);
+      link.classList.add(`${BLOCK}__link`);
+    } else if (
+      heading
+      && (p.compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING)
+    ) {
+      // paragraph before the heading → eyebrow / label
+      p.classList.add(`${BLOCK}__eyebrow`);
+    } else {
+      p.classList.add(`${BLOCK}__description`);
     }
   });
 }
@@ -51,7 +51,9 @@ function decorateCard(card) {
  * @param {Element} block The block element
  */
 export default function decorate(block) {
-  // Each authored row (`> div`) holds one or more cards (`> div > div`).
-  const cards = [...block.querySelectorAll(':scope > div > div')];
-  cards.forEach(decorateCard);
+  const row = block.firstElementChild;
+  if (!row) return;
+  row.classList.add(`${BLOCK}__row`);
+
+  [...row.children].forEach((cell) => decorateCell(cell));
 }
