@@ -357,7 +357,7 @@
     right: 0;
     z-index: 95;
     width: min(420px, 92vw);
-    background: var(var(--color-white));
+    background: var(--color-white);
     border: 1px solid var(--color-grey-bg-dark);
     box-shadow: var(--hv1-shadow);
     opacity: 0;
@@ -510,7 +510,7 @@ a.link {
 
 /* vehicles mega-menu ---------------------------------------------------- */
 .header-v1-item.vehicles .vehicles-flyout {
-    background: var(var(--color-white));
+    background: var(--color-white);
 }
 
 .header-v1 .vehicles-menu {
@@ -775,7 +775,7 @@ a.link {
     bottom: 0;
     width: 0;
     height: 2px;
-    background: var(--color-red--cta);
+    background: var(--color-red-cta);
     transform: translateX(-50%);
     transition: width 0.3s ease;
 }
@@ -803,7 +803,7 @@ a.link {
         z-index: 90;
         height: calc(100vh - var(--hv1-bar-height));
         overflow-y: auto;
-        background: var(var(--color-white));
+        background: var(--color-white);
         box-shadow: var(--hv1-shadow);
         transform: translateY(-100%);
         visibility: hidden;
