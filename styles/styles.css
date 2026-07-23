@@ -54,6 +54,7 @@
   --color-gray-secondary: #777777;
   --color-section-bg: #cfe2f3;
   --color-chevron-expand: #b8b8b8;
+  --color-soft-gray: #c5c5c5;
   /* brand aliases (kept so existing accent buttons keep working) */
   --color-brand-primary: #e10a1d;
   --color-brand-primary-dark: #b00716;
