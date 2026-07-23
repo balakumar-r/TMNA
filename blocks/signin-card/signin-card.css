@@ -1,6 +1,7 @@
 .signin-card-container {
     display: flex;
     justify-self: end;
+    background-image: url(https://www.toyota.com/content/dam/ecpc/NX-22.jpg);
 }
 
 .signin-card {
@@ -77,7 +78,6 @@
 .signin-card-btn {
     width: 100%;
     min-height: 50px;
-    padding: 16px 24px;
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
@@ -113,13 +113,6 @@
     color: var(--color-gray-dark);
     background: transparent;
     border: 1px solid var(--color-gray);
-}
-
-.signin-card-btn-secondary:hover,
-.signin-card-btn-secondary:focus-visible {
-    color: var(--color-white);
-    background: var(--color-black);
-    border-color: var(--color-black);
 }
 
 .signin-card-btn:focus-visible {
