@@ -13,9 +13,6 @@
   background-color: var(--color-grey-bg);
 }
 
-/* ----------------------------------
-   DESKTOP & TABLET
------------------------------------ */
 @media (width >= 768px) {
   .text-section-v2 .text-section-v2-wrapper {
     display: flex;
@@ -86,9 +83,6 @@
     text-decoration: underline;
   }
 }
-/* ----------------------------------
-   MOBILE ONLY
------------------------------------ */
 @media (width < 768px) {
   .text-section-v2 {
     position: relative;
