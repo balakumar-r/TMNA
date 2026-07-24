@@ -1,0 +1,107 @@
+.section-v1 {
+  background-color: var(--color-soft-gray);
+  padding: 80px 0;
+}
+.section-v1__row {
+  display: flex;
+  flex-direction: column;
+}
+@media (width >= 1024px) {
+  .section-v1__row {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
+.section-v1__media {
+  line-height: 0;
+}
+@media (width >= 1024px) {
+  .section-v1__media {
+    flex: 0 0 50%;
+  }
+}
+.section-v1__picture {
+  display: block;
+  position: relative;
+  z-index: 999;
+}
+.section-v1__image {
+  display: block;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.section-v1__content {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 40px 20px;
+}
+@media (width >= 1024px) {
+  .section-v1__content {
+    padding: 0 88px 0 40px;
+    flex: 1 1 50%;
+    justify-content: center;
+  }
+}
+.section-v1__title {
+  margin: 0 0 20px;
+  padding-bottom: 20px;
+  font-size: 33px;
+  color: var(--color-text-light);
+  line-height: 1.15;
+  letter-spacing: 1px;
+  position: relative;
+}
+.section-v1__title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  border-bottom: 2px solid var(--color-white);
+  z-index: 5;
+  left: -100vw;
+  width: 190.6vw;
+}
+@media (width >= 768px) {
+  .section-v1__title:after {
+    width: 194.7vw;
+  }
+}
+@media (width >= 1024px) {
+  .section-v1__title:after {
+    width: 143.1vw;
+  }
+}
+.section-v1__text {
+  margin: 0 0 20px;
+  color: var(--color-text-light);
+  font-size: 24px;
+  line-height: 36px;
+}
+.section-v1__cta-wrapper {
+  margin: 16px 0 0;
+  margin: 0;
+}
+.section-v1__cta-wrapper a:-moz-any-link {
+  color: var(--color-red-darker);
+  font-weight: var(--font-weight-book);
+  font-size: 24px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.section-v1__cta-wrapper a:any-link {
+  color: var(--color-red-darker);
+  font-weight: var(--font-weight-book);
+  font-size: 24px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.section-v1__cta-wrapper a:-moz-any-link:hover, .section-v1__cta-wrapper a:-moz-any-link:focus {
+  text-decoration: none;
+}
+.section-v1__cta-wrapper a:any-link:hover, .section-v1__cta-wrapper a:any-link:focus {
+  text-decoration: none;
+}/*# sourceMappingURL=section-v1.css.map */

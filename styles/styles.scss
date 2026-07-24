@@ -23,7 +23,26 @@
   --color-red-darker: #{$color-red-darker};
   --color-red-dark: #{$color-red-dark};
   --color-blue-primary: #{$color-blue-primary};
+  --color-red-privacy: #{$color-red-privacy};
+  --color-red-cta: #{$color-red-cta};
   --color-ash: #{$color-ash};
+  --color-red-light: #{$color-red-light};
+  --color-green: #{$color-green};
+  --color-text-black: #{$color-text-black};
+  --color-gray-background: #{$color-gray-background};
+  --color-gray-background-light: #{$color-gray-background-light};
+  --color-text-light: #{$color-text-light};
+  --color-blue-light: #{$color-blue-light};
+  --color-link-column: #{$color-link-column};
+  --color-border: #{$color-border};
+  --color-focus-outline: #{$color-focus-outline};
+  --color-tag-column: #{$color-tag-column};
+  --color-gray-text: #{$color-gray-text};
+  --color-red-hover: #{$color-red-hover};
+  --color-light-gray: #{$color-light-gray};
+  --color-golden-brown: #{$color-golden-brown};
+  --color-silver: #{$color-silver};
+  --color-text-muted: #{$color-text-muted};
 
   /* neutrals */
   --color-black: #{$color-black};
@@ -32,6 +51,19 @@
   --color-gray-medium: #{$color-gray-medium};
   --color-gray-light: #{$color-gray-light};
   --color-off-white: #{$color-off-white};
+  --color-grey-bg: #{$color-grey-bg};
+  --color-grey-bg-dark: #{$color-grey-bg-dark};
+  --color-grey-border: #{$color-grey-border};
+  --color-vg-text: #{$color-vg-text};
+  --color-vg-text-light: #{$color-vg-text-light};
+  --color-gray-lighter: #{$color-gray-lighter};
+  --color-black-light: #{$color-black-light};
+  --color-gray-secondary: #{$color-gray-secondary};
+  --color-section-bg: #{$color-section-bg};
+  --color-chevron-expand: #{$color-chevron-expand};
+  --color-soft-gray: #{$color-soft-gray};
+  --color-tab-bg-mob:    #{$color-tab-bg-mob};
+  --color-tab-bg-hover:  #{$color-tab-bg-hover};
 
   /* brand aliases (kept so existing accent buttons keep working) */
   --color-brand-primary: #{$color-red-primary};
@@ -66,6 +98,9 @@
   --heading-font-size-m: #{$heading-font-size-m};
   --heading-font-size-s: #{$heading-font-size-s};
   --heading-font-size-xs: #{$heading-font-size-xs};
+
+  /* transitions */
+  --chevron-transition: #{$chevron-transition};
 
   /* layout — max widths */
   --max-width-content: #{$max-width-content};
