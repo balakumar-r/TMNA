@@ -147,6 +147,12 @@ footer .tmna-footer-media .columns-wrapper:first-child .columns div div:last-chi
   display: flex;
   justify-content: end;
 }
+@media (max-width: 991px) {
+  footer .tmna-footer-media .columns-wrapper:first-child .columns div div:last-child {
+    order: 1;
+    justify-content: flex-start;
+  }
+}
 footer .tmna-footer-media .columns-wrapper:first-child .columns div div:last-child p,
 footer .tmna-footer-media .columns-wrapper:first-child .columns div div:last-child a {
   display: inline-block;

@@ -185,6 +185,10 @@ footer {
                     gap: 10px;
                     display: flex;
                     justify-content: end;
+                    @media (max-width: 991px) {
+                        order: 1;
+                        justify-content: flex-start;
+                    }
 
                     p,
                     a {
