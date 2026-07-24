@@ -134,4 +134,27 @@ footer .tmna-footer-privacy ul li a:hover {
   cursor: pointer;
   text-decoration: none;
 }
+footer .tmna-footer-media .columns-wrapper:first-child .columns div div:first-child {
+  width: 100%;
+}
+@media (width >= 768px) {
+  footer .tmna-footer-media .columns-wrapper:first-child .columns div div:first-child {
+    min-width: 60%;
+  }
+}
+footer .tmna-footer-media .columns-wrapper:first-child .columns div div:last-child {
+  gap: 10px;
+  display: flex;
+  justify-content: end;
+}
+footer .tmna-footer-media .columns-wrapper:first-child .columns div div:last-child p,
+footer .tmna-footer-media .columns-wrapper:first-child .columns div div:last-child a {
+  display: inline-block;
+  gap: 10px;
+  display: flex;
+}
+footer .tmna-footer-media .columns-wrapper:first-child .columns div div:last-child p img:hover,
+footer .tmna-footer-media .columns-wrapper:first-child .columns div div:last-child a img:hover {
+  transform: scale(1.05);
+}
 /*# sourceMappingURL=footer.css.map */
