@@ -218,10 +218,10 @@ export default function decorate(block) {
 
       <div class="select-vehicle-v1-footer">
         <span>${escapeHtml(signInTextBefore)}</span>
-        ">${escapeHtml(signInLabel)}</a>
+        "<a class="select-vehicle-v1-signin" href="${escapeHtml(signInUrl)}">${escapeHtml(signInLabel)}</a>
         <span>${escapeHtml(signInTextAfter)}</span>
       </div>
-    </form>
+    </form> 
   `;
 
     const form = block.querySelector('.select-vehicle-v1-form');
