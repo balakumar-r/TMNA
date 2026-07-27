@@ -10,7 +10,7 @@
   }
 }
 .cards-v1-inner {
-  max-width: 1200px;
+  max-width: 1150px;
   margin: 0 auto;
   padding: 0 32px;
   display: flex;
@@ -96,11 +96,12 @@
 }
 @media (max-width: 768px) {
   .cards-v1-heading {
-    font-size: 24px;
+    font-size: 33px;
   }
 }
 .cards-v1-divider-mobile {
   display: none;
+  height: 2px;
 }
 @media (max-width: 768px) {
   .cards-v1-divider-mobile {
@@ -138,6 +139,6 @@
 }
 @media (max-width: 768px) {
   .cards-v1-description {
-    font-size: 15px;
+    font-size: 24px;
   }
 }/*# sourceMappingURL=cards-v1.css.map */

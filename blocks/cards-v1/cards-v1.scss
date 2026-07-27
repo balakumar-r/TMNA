@@ -1,17 +1,17 @@
 @use '../../styles/tokens' as *;
-
+ 
 .cards-v1 {
   background: var(--color-white);
   padding: 40px 0;
   position: relative;
   overflow-x: hidden;
-
+ 
   @media (max-width: $bp-sm) {
     padding: 24px 0;
   }
-
+ 
   &-inner {
-    max-width: 1200px;
+    max-width: 1150px;
     margin: 0 auto;
     padding: 0 32px;
     display: flex;
@@ -21,41 +21,41 @@
     position: relative;
     z-index: 1;
     box-sizing: border-box;
-
+ 
     @media (max-width: $bp-md) {
       gap: 32px;
     }
-
+ 
     @media (max-width: $bp-sm) {
       flex-direction: column;
       gap: 0;
       padding: 0 16px;
     }
   }
-
+ 
   &-media,
   &-text {
     min-width: 0;
   }
-
+ 
   &-media {
     flex: 1;
     aspect-ratio: 16 / 10;
     overflow: hidden;
     position: relative;
     z-index: 1;
-
+ 
     @media (max-width: $bp-sm) {
       width: 100%;
       aspect-ratio: 16 / 9;
     }
-
+ 
     picture {
       display: block;
       width: 100%;
       height: 100%;
     }
-
+ 
     img {
       width: 100%;
       height: 100%;
@@ -63,7 +63,7 @@
       display: block;
     }
   }
-
+ 
   &-text {
     flex: 0 0 38%;
     max-width: 38%;
@@ -71,38 +71,39 @@
     flex-direction: column;
     position: relative;
     z-index: 1;
-
+ 
     @media (max-width: $bp-md) {
       flex: 0 0 42%;
       max-width: 42%;
     }
-
+ 
     @media (max-width: $bp-sm) {
       flex: 1 1 100%;
       max-width: 100%;
       padding-top: 20px;
     }
   }
-
+ 
   &-heading {
     margin: 0 0 16px;
     font-size: 32px;
     font-weight: 800;
     line-height: 1.15;
     color: var(--color-black);
-
+ 
     @media (max-width: $bp-md) {
       font-size: 28px;
     }
-
+ 
     @media (max-width: $bp-sm) {
-      font-size: 24px;
+      font-size: 33px;
     }
   }
-
+ 
   &-divider-mobile {
     display: none;
-
+    height: 2px;
+ 
     @media (max-width: $bp-sm) {
       display: block;
       width: 100%;
@@ -111,7 +112,7 @@
       margin-bottom: 20px;
     }
   }
-
+ 
   &-divider {
     position: absolute;
     left: 0;
@@ -120,24 +121,24 @@
     background-color: var(--color-gray-light);
     pointer-events: none;
     z-index: 0;
-
+ 
     @media (max-width: $bp-sm) {
       display: none;
     }
   }
-
+ 
   &-description {
     margin: 20px 0 0;
     font-size: 24px;
     line-height: 1.65;
     color: var(--color-black);
-
+ 
     @media (max-width: $bp-md) {
       font-size: 16px;
     }
-
+ 
     @media (max-width: $bp-sm) {
-      font-size: 15px;
+      font-size: 24px;
     }
   }
 }
