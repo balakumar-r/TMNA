@@ -1,7 +1,7 @@
-/* full bleed wrapper */
+/* Full Bleed Wrapper */
 main .section .carousel-wrapper {
   width: 100%;
-  max-width: 1600px;
+  max-width: 1500px;
   margin-inline: auto;
   padding-inline: 0;
 }
@@ -35,12 +35,12 @@ main .section .carousel-wrapper {
   user-select: none;
 }
 .carousel .carousel-slide {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
   position: relative;
+  flex: 0 0 100%;
   width: 100%;
-  aspect-ratio: 4/3;
   overflow: hidden;
+  scroll-snap-align: start;
+  aspect-ratio: 4/3;
 }
 .carousel .carousel-slide .carousel-slide-image {
   position: absolute;
@@ -74,14 +74,14 @@ main .section .carousel-wrapper {
   position: absolute;
   top: 40px;
   left: 50%;
-  transform: translateX(-50%);
   width: max-content;
   max-width: min(90%, 900px);
   margin: 0;
   padding: 0 24px;
-  color: var(--color-white);
+  color: #ffffff;
   text-align: center;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+  transform: translateX(-50%);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.6s ease, visibility 0s linear 0.6s;
@@ -104,21 +104,21 @@ main .section .carousel-wrapper {
 .carousel .carousel-content .carousel-slide-content h1,
 .carousel .carousel-content .carousel-slide-content h2,
 .carousel .carousel-content .carousel-slide-content h3 {
-  font-family: var(--heading-font-family);
+  font-family: '"Toyota Type", roboto-condensed, roboto-condensed-fallback, "Arial", sans-serif';
   line-height: 1.1;
 }
 .carousel .carousel-content .carousel-slide-content .button-wrapper {
-  margin-top: 20px;
+  margin-top: 24px;
 }
 .carousel .carousel-navigation-buttons {
   position: absolute;
   top: 50%;
   left: 16px;
   right: 16px;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 2;
   pointer-events: none;
   transform: translateY(-50%);
 }
@@ -130,21 +130,21 @@ main .section .carousel-wrapper {
   height: 33px;
   margin: 0;
   padding: 0;
-  border: none;
+  border: 0;
   border-radius: 50%;
-  color: var(--color-black);
   background: rgba(245, 245, 245, 0.6);
+  color: #000000;
   backdrop-filter: blur(6px);
   cursor: pointer;
   pointer-events: auto;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 .carousel .carousel-navigation-buttons button:hover {
-  background-color: var(--color-white);
+  background-color: #ffffff;
   transform: scale(1.06);
 }
 .carousel .carousel-navigation-buttons button:focus-visible {
-  outline: 2px solid var(--color-white);
+  outline: 2px solid #ffffff;
   outline-offset: 3px;
 }
 .carousel .carousel-navigation-buttons button svg {
@@ -155,7 +155,6 @@ main .section .carousel-wrapper {
   position: absolute;
   bottom: 22px;
   left: 50%;
-  transform: translateX(-50%);
   z-index: 3;
   display: flex;
   flex-wrap: wrap;
@@ -164,6 +163,7 @@ main .section .carousel-wrapper {
   gap: 10px;
   padding: 0;
   line-height: 0;
+  transform: translateX(-50%);
 }
 .carousel .carousel-slide-indicator button {
   width: 15px;
@@ -172,24 +172,24 @@ main .section .carousel-wrapper {
   padding: 0;
   border: 0;
   border-radius: 20px;
-  cursor: pointer;
   background-color: rgba(255, 255, 255, 0.45);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
   transition: width 0.3s ease, background-color 0.2s ease;
 }
 .carousel .carousel-slide-indicator button:hover {
   background-color: rgba(255, 255, 255, 0.75);
 }
 .carousel .carousel-slide-indicator button:disabled, .carousel .carousel-slide-indicator button[aria-current=true] {
-  background-color: var(--color-white);
+  background-color: #ffffff;
 }
 .carousel .carousel-slide-indicator button:focus-visible {
-  outline: 2px solid var(--color-white);
+  outline: 2px solid #ffffff;
   outline-offset: 3px;
 }
 
 /* Tablet */
-@media (width >= 768px) {
+@media (min-width: 768px) {
   .carousel .carousel-slide {
     aspect-ratio: 1920/700;
   }
@@ -202,13 +202,13 @@ main .section .carousel-wrapper {
   }
 }
 /* Desktop */
-@media (width >= 1024px) {
+@media (min-width: 1024px) {
   .carousel .carousel-navigation-buttons button {
     width: 56px;
     height: 56px;
   }
 }
-/* Reduced motion */
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .carousel .carousel-content .carousel-slide-content {
     transition: none;

@@ -1,9 +1,11 @@
-/* full bleed wrapper */
+@use "../../styles/tokens" as *;
+
+/* Full Bleed Wrapper */
 main {
   .section {
     .carousel-wrapper {
       width: 100%;
-      max-width: 1600px;
+      max-width: $max-width-wide;
       margin-inline: auto;
       padding-inline: 0;
     }
@@ -44,12 +46,12 @@ main {
   }
 
   .carousel-slide {
-    flex: 0 0 100%;
-    scroll-snap-align: start;
     position: relative;
+    flex: 0 0 100%;
     width: 100%;
-    aspect-ratio: 4 / 3;
     overflow: hidden;
+    scroll-snap-align: start;
+    aspect-ratio: 4 / 3;
 
     .carousel-slide-image {
       position: absolute;
@@ -88,17 +90,18 @@ main {
 
     .carousel-slide-content {
       position: absolute;
-      top: 40px;
+      top: $space-xl;
       left: 50%;
-      transform: translateX(-50%);
       width: max-content;
       max-width: min(90%, 900px);
       margin: 0;
-      padding: 0 24px;
-      color: var(--color-white);
+      padding: 0 $space-m;
+
+      color: $color-white;
       text-align: center;
       text-shadow: 0 1px 12px rgb(0 0 0 / 45%);
 
+      transform: translateX(-50%);
       opacity: 0;
       visibility: hidden;
 
@@ -118,7 +121,7 @@ main {
       }
 
       > * {
-        margin: 0 0 12px;
+        margin: 0 0 $space-xs;
 
         &:last-child {
           margin-bottom: 0;
@@ -128,12 +131,12 @@ main {
       h1,
       h2,
       h3 {
-        font-family: var(--heading-font-family);
+        font-family: $font-heading;
         line-height: 1.1;
       }
 
       .button-wrapper {
-        margin-top: 20px;
+        margin-top: $space-m;
       }
     }
   }
@@ -141,12 +144,14 @@ main {
   .carousel-navigation-buttons {
     position: absolute;
     top: 50%;
-    left: 16px;
-    right: 16px;
+    left: $space-s;
+    right: $space-s;
+    z-index: 2;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 2;
+
     pointer-events: none;
     transform: translateY(-50%);
 
@@ -154,15 +159,20 @@ main {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
       width: 33px;
       height: 33px;
       margin: 0;
       padding: 0;
-      border: none;
+
+      border: 0;
       border-radius: 50%;
-      color: var(--color-black);
+
       background: rgb(245 245 245 / 60%);
+      color: $color-black;
+
       backdrop-filter: blur(6px);
+
       cursor: pointer;
       pointer-events: auto;
 
@@ -171,18 +181,18 @@ main {
         transform 0.2s ease;
 
       &:hover {
-        background-color: var(--color-white);
+        background-color: $color-white;
         transform: scale(1.06);
       }
 
       &:focus-visible {
-        outline: 2px solid var(--color-white);
+        outline: 2px solid $color-white;
         outline-offset: 3px;
       }
 
       svg {
-        width: 24px;
-        height: 24px;
+        width: $space-m;
+        height: $space-m;
       }
     }
   }
@@ -191,7 +201,6 @@ main {
     position: absolute;
     bottom: 22px;
     left: 50%;
-    transform: translateX(-50%);
     z-index: 3;
 
     display: flex;
@@ -202,6 +211,8 @@ main {
 
     padding: 0;
     line-height: 0;
+
+    transform: translateX(-50%);
   }
 
   .carousel-slide-indicator {
@@ -210,12 +221,14 @@ main {
       height: 15px;
       margin: 0;
       padding: 0;
+
       border: 0;
       border-radius: 20px;
-      cursor: pointer;
 
       background-color: rgb(255 255 255 / 45%);
       box-shadow: 0 0 0 1px rgb(0 0 0 / 15%);
+
+      cursor: pointer;
 
       transition:
         width 0.3s ease,
@@ -227,11 +240,11 @@ main {
 
       &:disabled,
       &[aria-current="true"] {
-        background-color: var(--color-white);
+        background-color: $color-white;
       }
 
       &:focus-visible {
-        outline: 2px solid var(--color-white);
+        outline: 2px solid $color-white;
         outline-offset: 3px;
       }
     }
@@ -239,7 +252,7 @@ main {
 }
 
 /* Tablet */
-@media (width >= 768px) {
+@media (min-width: $bp-sm) {
   .carousel {
     .carousel-slide {
       aspect-ratio: 1920 / 700;
@@ -259,7 +272,7 @@ main {
 }
 
 /* Desktop */
-@media (width >= 1024px) {
+@media (min-width: $bp-md) {
   .carousel {
     .carousel-navigation-buttons {
       button {
@@ -270,7 +283,7 @@ main {
   }
 }
 
-/* Reduced motion */
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .carousel {
     .carousel-content {
