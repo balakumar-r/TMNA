@@ -1,0 +1,125 @@
+.hero-video-v1 {
+    width: 100%;
+}
+
+.hero-video-v1-inner {
+    position: relative;
+    width: 100%;
+    min-height: 360px;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--color-black);
+}
+
+.hero-video-v1-poster {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+.hero-video-v1-poster::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 18%);
+    transition: background 0.3s ease;
+}
+
+.hero-video-v1-poster:hover::before {
+    background: rgb(0 0 0 / 28%);
+}
+
+.hero-video-v1-poster.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.hero-video-v1-play {
+    position: relative;
+    z-index: 3;
+    height: auto;
+    max-width: 225px;
+    width: 12%;
+    padding: 0;
+    border: 0;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.hero-video-v1-play:hover,
+.hero-video-v1-play:focus-visible {
+    transform: scale(1.08);
+}
+
+.hero-video-v1-play:focus-visible {
+    outline: 3px solid var(--color-white);
+    outline-offset: 6px;
+    border-radius: 50%;
+}
+
+.hero-video-v1-play-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-video-v1-player {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: var(--color-black);
+}
+
+.hero-video-v1-player.is-active {
+    z-index: 3;
+}
+
+.hero-video-v1-iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.hero-video-v1-error {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .hero-video-v1-inner {
+        min-height: 260px;
+    }
+
+    .hero-video-v1-play {
+        width: 68px;
+        height: 68px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-video-v1-inner {
+        min-height: 220px;
+    }
+
+    .hero-video-v1-play {
+        width: 58px;
+        height: 58px;
+    }
+}

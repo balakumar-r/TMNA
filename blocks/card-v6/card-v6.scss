@@ -1,94 +1,87 @@
 @use '../../styles/tokens' as *;
 
-.card-v6-container:has(.card-v6) {
-    padding: var(--space-xl) 0;
+.card-v6-wrapper:has(.card-v6) {
+    max-width: 1054px;
+    margin: 0 auto;
+    padding: 40px 35px;
+
+    @media (width >= #{$bp-tablet}) {
+        padding: 40px 64px;
+    }
+    @media (width >= #{$bp-desktop}) {
+        padding: 40px 0;
+  }
 }
 
 .card-v6 {
-    max-width: 1054px;
-    margin: 0 auto;
-    padding: 0 35px;
-    @media (width = #{$bp-tablet}) {
-        padding: 0 64px;
-    }
+  &__row {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 40px;
     @media (width >= #{$bp-desktop}) {
-        padding: 0;
+        flex-direction: row;
     }
+  }
 
-    & > div {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 52px;
+  &__cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-        @media (width >= #{$bp-desktop}) {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
+    @media (width >= #{$bp-desktop}) {
+        &:first-child {
+            flex: 1 1 65%;
+        }
+        &:last-child {
+            flex: 1 1 35%;
         }
     }
+  }
 
-    &__card {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
+  &__title {
+    margin: 0 0 20px;
+    color: var(--color-red-darker);
+    font-size: 33px;
+    font-weight: var(--font-weight-bold);
+    line-height: 38px;
+    letter-spacing: 1px;
+  }
 
-    &__image {
-        margin: 0;
-        order: -1;
-    }
+  &__description {
+    margin: 0 0 20px;
+    color: var(--color-text-light);
+    font-size: 24px;
+    line-height: 36px;
+  }
 
-    &__picture {
-        display: block;
-    }
-
-    &__img {
-        display: block;
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-    }
-
-    &__title {
-        margin: 0;
-        color: $color-text;
-        font-family: #{$font-heading};
-        font-weight: $font-weight-bold;
-        font-size: 24px;
-        line-height: 36px;
-        letter-spacing: 1px;
-    }
-
-    &__text {
-        margin: 0;
-        color: $color-text;
-        font-family: #{$font-body};
+  &__cta {
+    margin: 0;
+    a:any-link {
+        color: var(--color-red-darker);
         font-weight: var(--font-weight-book);
         font-size: 24px;
-        line-height: 36px;
-    }
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        text-decoration: none;
 
-    &__cta {
-        margin: 0;
-        a:any-link {
-            color: var(--color-red-darker);
-            font-size: 24px;
-            line-height: 36px;
-            letter-spacing: .5px;
-            text-transform: uppercase;
+        &:hover,
+        &:focus {
             text-decoration: none;
-
-            &:hover,
-            &:focus {
-                color: var(--color-red-darker);
-                text-decoration: none;
-
-                &::after {
-                    height: 2px;
-                    background: var(--color-red-primary);
-                    transform: translateY(3px);
-                }
-            }
         }
     }
-    
+  }
+
+  &__media {
+    margin: 0;
+  }
+
+  &__picture {
+    display: block;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 }
