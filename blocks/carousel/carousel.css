@@ -1,276 +1,217 @@
-/* full-bleed wrapper: span up to 1600px with no side padding/margin
-   (specific enough to override `main > .section > div` from styles.css) */
+/* full bleed wrapper */
 main .section .carousel-wrapper {
-    width: 100%;
-    max-width: 1600px;
-    margin-inline: auto;
-    padding-inline: 0;
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding-inline: 0;
 }
 
 .carousel {
-    position: relative;
+  position: relative;
 }
-
 .carousel .carousel-slides-container {
-    position: relative;
+  position: relative;
 }
-
 .carousel .carousel-slides,
 .carousel .carousel-slide-indicators {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-
 .carousel .carousel-slides {
-    display: flex;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    overflow: scroll clip;
-    cursor: grab;
+  display: flex;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overflow: scroll clip;
+  cursor: grab;
 }
-
 .carousel .carousel-slides::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-
-/* while dragging: follow the pointer instantly, snap once released */
 .carousel .carousel-slides.is-dragging {
-    scroll-behavior: auto;
-    scroll-snap-type: none;
-    cursor: grabbing;
-    user-select: none;
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+  cursor: grabbing;
+  user-select: none;
 }
-
-/* keep images from being selected or ghost-dragged during a drag */
-.carousel .carousel-slide-image img {
-    user-select: none;
-    -webkit-user-drag: none;
-}
-
 .carousel .carousel-slide {
-    flex: 0 0 100%;
-    scroll-snap-align: start;
-    position: relative;
-    width: 100%;
-
-    /* full-bleed, cinematic hero — mobile first (taller for small screens) */
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
 }
-
-@media (width >= 768px) {
-    .carousel .carousel-slide {
-        /* matches the 1920x700 wide banner ratio on larger screens */
-        aspect-ratio: 1920 / 700;
-    }
-}
-
 .carousel .carousel-slide .carousel-slide-image {
-    position: absolute;
-    inset: 0;
+  position: absolute;
+  inset: 0;
 }
-
 .carousel .carousel-slide .carousel-slide-image picture {
-    position: absolute;
-    inset: 0;
+  position: absolute;
+  inset: 0;
 }
-
 .carousel .carousel-slide .carousel-slide-image picture > img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
 }
-
-/* gradient scrim so the overlaid content stays legible on any image */
 .carousel .carousel-slide .carousel-slide-image::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(180deg, rgb(0 0 0 / 45%) 0%, rgb(0 0 0 / 0%) 40%),
-        linear-gradient(0deg, rgb(0 0 0 / 30%) 0%, rgb(0 0 0 / 0%) 20%);
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 40%), linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 20%);
+  pointer-events: none;
 }
-
-/* fixed content overlay — sits over the images and never scrolls with them */
 .carousel .carousel-content {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
 }
-
-/* each slide's content stacks in the same fixed spot and crossfades in/out */
 .carousel .carousel-content .carousel-slide-content {
-    position: absolute;
-    top: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: max-content;
-    max-width: min(90%, 900px);
-    margin: 0;
-    padding: 0 24px;
-    color: var(--color-white);
-    text-align: center;
-    text-shadow: 0 1px 12px rgb(0 0 0 / 45%);
-
-    /* smooth crossfade between slides (no abrupt hide/show) */
-    opacity: 0;
-    visibility: hidden;
-    transition:
-        opacity 0.6s ease,
-        visibility 0s linear 0.6s;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: min(90%, 900px);
+  margin: 0;
+  padding: 0 24px;
+  color: var(--color-white);
+  text-align: center;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, visibility 0s linear 0.6s;
 }
-
 .carousel .carousel-content .carousel-slide-content.is-active {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.6s ease;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease;
 }
-
+.carousel .carousel-content .carousel-slide-content.is-active a,
+.carousel .carousel-content .carousel-slide-content.is-active button {
+  pointer-events: auto;
+}
 .carousel .carousel-content .carousel-slide-content > * {
-    margin: 0 0 12px;
+  margin: 0 0 12px;
 }
-
 .carousel .carousel-content .carousel-slide-content > *:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
-
 .carousel .carousel-content .carousel-slide-content h1,
 .carousel .carousel-content .carousel-slide-content h2,
 .carousel .carousel-content .carousel-slide-content h3 {
-    font-family: var(--heading-font-family);
-    line-height: 1.1;
+  font-family: var(--heading-font-family);
+  line-height: 1.1;
 }
-
 .carousel .carousel-content .carousel-slide-content .button-wrapper {
-    margin-top: 20px;
+  margin-top: 20px;
 }
-
-/* --- control layout containers --- */
 .carousel .carousel-navigation-buttons {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 16px;
-    right: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 2;
-    pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+  pointer-events: none;
+  transform: translateY(-50%);
 }
-
-/* indicators, centered along the bottom of the hero */
-.carousel .carousel-slide-indicators {
-    position: absolute;
-    bottom: 22px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 0;
-    line-height: 0;
-}
-
-/* --- base control styling (before any pseudo-class variants) --- */
-
-/* glassy, circular arrow buttons */
 .carousel .carousel-navigation-buttons button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 33px;
-    height: 33px;
-    margin: 0;
-    padding: 0;
-    border-radius: 50%;
-    color: var(--color-black);
-    background: rgb(245 245 245 / 60%);
-    backdrop-filter: blur(6px);
-    cursor: pointer;
-    pointer-events: auto;
-    transition:
-        background-color 0.2s ease,
-        transform 0.2s ease;
-    border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  color: var(--color-black);
+  background: rgba(245, 245, 245, 0.6);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
-
-.carousel .carousel-navigation-buttons button svg {
-    width: 24px;
-    height: 24px;
-}
-
-.carousel .carousel-slide-indicator button {
-    width: 15px;
-    height: 15px;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    border-radius: 20px;
-    background-color: rgb(255 255 255 / 45%);
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%);
-    transition:
-        width 0.3s ease,
-        background-color 0.2s ease;
-    cursor: pointer;
-}
-
-/* --- interaction & active states (after all base rules) --- */
 .carousel .carousel-navigation-buttons button:hover {
-    background-color: var(--color-white);
-    transform: scale(1.06);
+  background-color: var(--color-white);
+  transform: scale(1.06);
 }
-
+.carousel .carousel-navigation-buttons button:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 3px;
+}
+.carousel .carousel-navigation-buttons button svg {
+  width: 24px;
+  height: 24px;
+}
+.carousel .carousel-slide-indicators {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0;
+  line-height: 0;
+}
+.carousel .carousel-slide-indicator button {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  transition: width 0.3s ease, background-color 0.2s ease;
+}
 .carousel .carousel-slide-indicator button:hover {
-    background-color: rgb(255 255 255 / 75%);
+  background-color: rgba(255, 255, 255, 0.75);
 }
-
-/* active indicator stretches into a pill */
-.carousel .carousel-slide-indicator button:disabled,
-.carousel .carousel-slide-indicator button[aria-current="true"] {
-    background-color: var(--color-white);
+.carousel .carousel-slide-indicator button:disabled, .carousel .carousel-slide-indicator button[aria-current=true] {
+  background-color: var(--color-white);
 }
-
-.carousel .carousel-navigation-buttons button:focus-visible,
 .carousel .carousel-slide-indicator button:focus-visible {
-    outline: 2px solid var(--color-white);
-    outline-offset: 3px;
+  outline: 2px solid var(--color-white);
+  outline-offset: 3px;
 }
 
+/* Tablet */
 @media (width >= 768px) {
-    .carousel .carousel-navigation-buttons {
-        left: 28px;
-        right: 28px;
-    }
-
-    .carousel .carousel-content .carousel-slide-content {
-        top: 56px;
-    }
+  .carousel .carousel-slide {
+    aspect-ratio: 1920/700;
+  }
+  .carousel .carousel-navigation-buttons {
+    left: 28px;
+    right: 28px;
+  }
+  .carousel .carousel-content .carousel-slide-content {
+    top: 56px;
+  }
 }
-
+/* Desktop */
 @media (width >= 1024px) {
-    .carousel .carousel-navigation-buttons button {
-        width: 56px;
-        height: 56px;
-    }
+  .carousel .carousel-navigation-buttons button {
+    width: 56px;
+    height: 56px;
+  }
 }
-
-/* honor reduced-motion preferences: crossfade instantly, no animation */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    .carousel .carousel-content .carousel-slide-content {
-        transition: none;
-    }
+  .carousel .carousel-content .carousel-slide-content {
+    transition: none;
+  }
 }
-
-/* keep CTAs clickable even though the overlay is otherwise click-through
-   (declared last so it stays more specific than the control-button rules) */
-.carousel .carousel-content .carousel-slide-content.is-active a,
-.carousel .carousel-content .carousel-slide-content.is-active button {
-    pointer-events: auto;
-}
+/*# sourceMappingURL=carousel.css.map */
