@@ -1,12 +1,18 @@
+@use "../../styles/tokens" as *;
+
 .signin-card-container {
   display: flex;
-  justify-self: end;
+  justify-content: flex-end;
   background-image: url("https://www.toyota.com/content/dam/ecpc/NX-22.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 700px;
 
   .signin-card {
     width: 100%;
-    max-width: 360px;
-    margin: 0 100px;
+    max-width: 100%;
+    margin: 0 auto;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -14,10 +20,10 @@
 
     &-inner {
       width: 100%;
-      padding: 32px;
-      margin: 60px auto;
+      padding: 38px 24px 40px;
+      margin: 40px auto;
       box-sizing: border-box;
-      background: rgb(255 255 255 / 86%);
+      background: rgb(255 255 255 / 92%);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       display: flex;
@@ -31,13 +37,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
 
       img,
       picture {
         display: block;
-        width: 50px;
-        max-width: 50px;
+        width: 78px;
+        max-width: 78px;
         height: auto;
       }
     }
@@ -45,14 +51,14 @@
     &-description {
       width: 100%;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
 
       p {
         margin: 0;
-        color: var(--color-gray-text);
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 26px;
+        color: $color-gray-text;
+        font-size: $body-font-size-xs;
+        font-weight: $font-weight-book;
+        line-height: 1.5;
       }
     }
 
@@ -60,29 +66,29 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 0;
 
       a {
-        color: var(--color-gray-text);
+        color: $color-gray-text;
         text-decoration: none;
 
         &:first-child {
-          color: var(--color-white);
+          color: $color-white;
         }
       }
     }
 
     &-btn {
       width: 100%;
-      min-height: 50px;
+      min-height: 56px;
+      padding: 14px 18px;
       box-sizing: border-box;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
+      font-size: $body-font-size-xs-desktop;
+      font-weight: $font-weight-bold;
       line-height: 16px;
       border-radius: 0;
       cursor: pointer;
@@ -94,27 +100,27 @@
         transform 0.25s ease;
 
       &:focus-visible {
-        outline: 2px solid var(--color-blue);
+        outline: 2px solid $color-blue-primary;
         outline-offset: 3px;
       }
 
       &-primary {
-        color: var(--color-white);
-        background: var(--color-black);
-        border: 1px solid var(--color-black);
-        margin-bottom: 36px;
+        color: $color-white;
+        background: $color-black;
+        border: 1px solid $color-black;
+        margin-bottom: 28px;
 
         &:hover,
         &:focus-visible {
-          background: var(--color-gray-dark);
-          border-color: var(--color-gray-dark);
+          background: $color-gray-dark;
+          border-color: $color-gray-dark;
         }
       }
 
       &-secondary {
-        color: var(--color-gray-dark);
+        color: $color-gray-dark;
         background: transparent;
-        border: 1px solid var(--color-gray-text);
+        border: 1px solid $color-gray-text;
       }
 
       &-guest {
@@ -124,126 +130,133 @@
 
     &-divider {
       width: 100%;
-      margin: 36px 0;
+      margin: 30px 0;
       display: flex;
       align-items: center;
-      gap: 16px;
-      color: var(--color-text-muted);
+      gap: 14px;
+      color: $color-text-muted;
 
       &::before,
       &::after {
         content: "";
         flex: 1;
         height: 1px;
-        background: var(--color-gray-text);
+        background: $color-gray-text;
       }
 
       span {
-        color: var(--color-text-muted);
-        font-size: 24px;
-        font-weight: 400;
+        color: $color-text-muted;
+        font-size: $heading-font-size-m;
+        font-weight: $font-weight-book;
         line-height: 1;
       }
     }
   }
+
+  /* Tablet */
+  @media (min-width: $bp-sm) {
+    .signin-card {
+      max-width: 420px;
+      margin: 0 60px 0 auto;
+
+      &-inner {
+        min-height: auto;
+        padding: 46px 40px 48px;
+        background: rgb(255 255 255 / 88%);
+      }
+
+      &-icon {
+        img,
+        picture {
+          width: 60px;
+          max-width: 60px;
+        }
+      }
+
+      &-description {
+        p {
+          font-size: $body-font-size-s;
+          line-height: 26px;
+        }
+      }
+
+      &-btn {
+        min-height: 58px;
+        font-size: $body-font-size-xs;
+      }
+
+      &-btn-primary {
+        margin-bottom: 36px;
+      }
+
+      &-divider {
+        margin: 36px 0;
+        gap: 16px;
+
+        span {
+          font-size: $heading-font-size-s;
+        }
+      }
+    }
+  }
+
+  /* Desktop */
+  @media (min-width: $bp-md) {
+    .signin-card {
+      max-width: 360px;
+      margin: 0 100px 0 auto;
+
+      &-inner {
+        padding: 32px;
+        margin: 60px auto;
+        background: rgb(255 255 255 / 86%);
+      }
+
+      &-icon {
+        margin-bottom: 28px;
+
+        img,
+        picture {
+          width: 50px;
+          max-width: 50px;
+        }
+      }
+
+      &-description {
+        margin-bottom: 40px;
+
+        p {
+          font-size: 14px;
+          line-height: 26px;
+        }
+      }
+
+      &-btn {
+        min-height: 50px;
+        padding: 0;
+        font-size: 14px;
+      }
+
+      &-btn-primary {
+        margin-bottom: 36px;
+      }
+
+      &-divider {
+        margin: 36px 0;
+        gap: 16px;
+
+        span {
+          font-size: 24px;
+        }
+      }
+    }
+  }
 }
 
-/* Optional: when signin card is placed inside hero */
+/* Hero Integration */
 .hero {
   .signin-card-wrapper {
     position: relative;
     z-index: 2;
-  }
-}
-
-/* Tablet */
-@media (width <= 991px) {
-  .signin-card {
-    max-width: 420px;
-
-    &-inner {
-      min-height: auto;
-      padding: 46px 40px 48px;
-    }
-
-    &-description {
-      p {
-        font-size: 19px;
-      }
-    }
-
-    &-btn {
-      min-height: 58px;
-      font-size: 17px;
-    }
-  }
-}
-
-/* Mobile */
-@media (width <= 767px) {
-  .signin-card {
-    max-width: 100%;
-
-    &-inner {
-      padding: 38px 24px 40px;
-      background: rgb(255 255 255 / 92%);
-    }
-
-    &-icon {
-      margin-bottom: 24px;
-
-      img,
-      picture {
-        width: 78px;
-        max-width: 78px;
-      }
-    }
-
-    &-description {
-      margin-bottom: 32px;
-
-      p {
-        font-size: 18px;
-        line-height: 1.5;
-      }
-    }
-
-    &-btn {
-      min-height: 56px;
-      padding: 14px 18px;
-      font-size: 16px;
-    }
-
-    &-btn-primary {
-      margin-bottom: 28px;
-    }
-
-    &-divider {
-      margin: 30px 0;
-      gap: 14px;
-
-      span {
-        font-size: 22px;
-      }
-    }
-  }
-}
-
-/* Small Mobile */
-@media (width <= 480px) {
-  .signin-card {
-    &-inner {
-      padding: 34px 20px 36px;
-    }
-
-    &-description {
-      p {
-        font-size: 17px;
-      }
-    }
-
-    &-btn {
-      font-size: 15px;
-    }
   }
 }
