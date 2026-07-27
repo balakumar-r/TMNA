@@ -37,6 +37,8 @@
   --color-golden-brown: #b9a074;
   --color-silver: #adadad;
   --color-text-muted: #939393;
+  --color-popup-black: rgba(0, 0, 0, 0.8);
+  --color-border-right: rgba(0, 0, 0, 0.0784313725);
   /* neutrals */
   --color-black: #000000;
   --color-white: #ffffff;
