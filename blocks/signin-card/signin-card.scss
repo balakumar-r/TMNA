@@ -1,0 +1,249 @@
+.signin-card-container {
+  display: flex;
+  justify-self: end;
+  background-image: url("https://www.toyota.com/content/dam/ecpc/NX-22.jpg");
+
+  .signin-card {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 100px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    opacity: 0.9;
+
+    &-inner {
+      width: 100%;
+      padding: 32px;
+      margin: 60px auto;
+      box-sizing: border-box;
+      background: rgb(255 255 255 / 86%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 8px 28px rgb(0 0 0 / 8%);
+    }
+
+    &-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+
+      img,
+      picture {
+        display: block;
+        width: 50px;
+        max-width: 50px;
+        height: auto;
+      }
+    }
+
+    &-description {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 40px;
+
+      p {
+        margin: 0;
+        color: var(--color-gray-text);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 26px;
+      }
+    }
+
+    &-actions {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+
+      a {
+        color: var(--color-gray-text);
+        text-decoration: none;
+
+        &:first-child {
+          color: var(--color-white);
+        }
+      }
+    }
+
+    &-btn {
+      width: 100%;
+      min-height: 50px;
+      box-sizing: border-box;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 16px;
+      border-radius: 0;
+      cursor: pointer;
+
+      transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+
+      &:focus-visible {
+        outline: 2px solid var(--color-blue);
+        outline-offset: 3px;
+      }
+
+      &-primary {
+        color: var(--color-white);
+        background: var(--color-black);
+        border: 1px solid var(--color-black);
+        margin-bottom: 36px;
+
+        &:hover,
+        &:focus-visible {
+          background: var(--color-gray-dark);
+          border-color: var(--color-gray-dark);
+        }
+      }
+
+      &-secondary {
+        color: var(--color-gray-dark);
+        background: transparent;
+        border: 1px solid var(--color-gray-text);
+      }
+
+      &-guest {
+        margin-top: 0;
+      }
+    }
+
+    &-divider {
+      width: 100%;
+      margin: 36px 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--color-text-muted);
+
+      &::before,
+      &::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--color-gray-text);
+      }
+
+      span {
+        color: var(--color-text-muted);
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1;
+      }
+    }
+  }
+}
+
+/* Optional: when signin card is placed inside hero */
+.hero {
+  .signin-card-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* Tablet */
+@media (width <= 991px) {
+  .signin-card {
+    max-width: 420px;
+
+    &-inner {
+      min-height: auto;
+      padding: 46px 40px 48px;
+    }
+
+    &-description {
+      p {
+        font-size: 19px;
+      }
+    }
+
+    &-btn {
+      min-height: 58px;
+      font-size: 17px;
+    }
+  }
+}
+
+/* Mobile */
+@media (width <= 767px) {
+  .signin-card {
+    max-width: 100%;
+
+    &-inner {
+      padding: 38px 24px 40px;
+      background: rgb(255 255 255 / 92%);
+    }
+
+    &-icon {
+      margin-bottom: 24px;
+
+      img,
+      picture {
+        width: 78px;
+        max-width: 78px;
+      }
+    }
+
+    &-description {
+      margin-bottom: 32px;
+
+      p {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+    }
+
+    &-btn {
+      min-height: 56px;
+      padding: 14px 18px;
+      font-size: 16px;
+    }
+
+    &-btn-primary {
+      margin-bottom: 28px;
+    }
+
+    &-divider {
+      margin: 30px 0;
+      gap: 14px;
+
+      span {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+/* Small Mobile */
+@media (width <= 480px) {
+  .signin-card {
+    &-inner {
+      padding: 34px 20px 36px;
+    }
+
+    &-description {
+      p {
+        font-size: 17px;
+      }
+    }
+
+    &-btn {
+      font-size: 15px;
+    }
+  }
+}
