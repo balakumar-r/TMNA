@@ -2,7 +2,7 @@
   background: var(--color-white);
   padding: 40px 0;
   position: relative;
-  overflow: visible;
+  overflow-x: hidden;
 }
 @media (max-width: 768px) {
   .cards-v1 {
@@ -19,6 +19,7 @@
   gap: 48px;
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
 }
 @media (max-width: 1024px) {
   .cards-v1-inner {
@@ -31,6 +32,9 @@
     gap: 0;
     padding: 0 16px;
   }
+}
+.cards-v1-media, .cards-v1-text {
+  min-width: 0;
 }
 .cards-v1-media {
   flex: 1;
@@ -82,8 +86,8 @@
   margin: 0 0 16px;
   font-size: 32px;
   font-weight: 800;
-  color: var(--color-black);
   line-height: 1.15;
+  color: var(--color-black);
 }
 @media (max-width: 1024px) {
   .cards-v1-heading {
@@ -103,16 +107,15 @@
     display: block;
     width: 100%;
     height: 1px;
-    background-color: var(--color-gray-light);
-    margin: 0 0 20px;
+    background: var(--color-gray-light);
+    margin-bottom: 20px;
   }
 }
 .cards-v1-divider {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  height: 1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
   background-color: var(--color-gray-light);
   pointer-events: none;
   z-index: 0;
@@ -124,7 +127,7 @@
 }
 .cards-v1-description {
   margin: 20px 0 0;
-  font-size: 18px;
+  font-size: 24px;
   line-height: 1.65;
   color: var(--color-black);
 }
