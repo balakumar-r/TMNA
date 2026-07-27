@@ -1,5 +1,5 @@
 :root {
-  --tm-header-shadow: 0 4px 18px rgb(0 0 0 / 8%);
+  --tm-header-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 header {
@@ -13,21 +13,21 @@ header .header.block {
 
 .toyota-mobility-header {
   width: 100%;
-  background: var(--color-tm-header-bg);
-  color: var(--color-black-light);
+  background: #ffffff;
+  color: #1a1a1a;
 }
 
 .global-site-header {
   width: 100%;
-  background: var(--color-tm-header-bg);
-  border-bottom: 1px solid var(--tm-header-border);
+  background: #ffffff;
+  border-bottom: 1px solid #e4e3e3;
 }
 .global-site-header-wrapper {
   width: 100%;
-  background: var(--color-tm-header-bg);
+  background: #ffffff;
 }
 .global-site-header-container {
-  max-width: 1440px;
+  max-width: 1500px;
   min-height: 72px;
   margin: 0 auto;
   padding: 0 32px;
@@ -71,7 +71,7 @@ header .header.block {
   transform: translateY(-50%);
   width: 2px;
   height: 23px;
-  background-color: var(--color-chevron-expand);
+  background-color: #b8b8b8;
 }
 .global-site-header-links {
   list-style: none;
@@ -89,15 +89,15 @@ header .header.block {
   display: inline-flex;
   align-items: center;
   min-height: 72px;
-  color: var(--color-black-light);
-  font-size: 15px;
+  color: #1a1a1a;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
 }
 .global-site-header-link a:hover, .global-site-header-link a:focus-visible {
-  color: var(--color-red-cta);
+  color: #eb0a1e;
 }
 
 .hamburger-button {
@@ -109,7 +109,7 @@ header .header.block {
   border: 1px solid transparent;
   border-radius: 0;
   background: transparent;
-  color: var(--color-black-light);
+  color: #1a1a1a;
   font-size: 28px;
   line-height: 1;
   cursor: pointer;
@@ -122,8 +122,8 @@ header .header.block {
   width: min(88vw, 390px);
   height: 100vh;
   overflow-y: auto;
-  background-color: var(--color-white);
-  box-shadow: var(--tm-header-shadow);
+  background-color: #ffffff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transform: translateX(100%);
   visibility: hidden;
   transition: transform 240ms ease, visibility 240ms ease;
@@ -151,11 +151,11 @@ header .header.block {
   align-items: stretch;
   gap: 0;
   width: 100%;
-  border-top: 2px solid var(--color-chevron-expand);
+  border-top: 2px solid #b8b8b8;
 }
 .menu-drawer .global-site-header-link {
   width: 100%;
-  border-bottom: 2px solid var(--color-chevron-expand);
+  border-bottom: 2px solid #b8b8b8;
 }
 .menu-drawer .global-site-header-link a {
   min-height: 58px;
@@ -174,11 +174,10 @@ header .header.block {
   align-items: center;
   width: 100%;
   padding: 15px 20px;
-  border-top: 1px solid var(--color-chevron-expand);
-  border-right: 0;
   border: 0;
+  border-top: 1px solid #b8b8b8;
   background: transparent;
-  color: var(--color-chevron-expand);
+  color: #b8b8b8;
   cursor: pointer;
 }
 .close-button .text {
@@ -195,15 +194,16 @@ header .header.block {
 
 .page-title {
   width: 100%;
-  background: var(--color-gray-background);
-  border-bottom: 1px solid var(--color-gray-background);
+  background: #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
 }
 .page-title h1 {
-  max-width: 1440px;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 10px 0px;
-  color: var(--color-black-light);
-  font-size: 24px;
+  padding: 10px 0;
+  color: #1a1a1a;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 html.nav-open,
@@ -211,7 +211,8 @@ body.nav-open {
   overflow: hidden;
 }
 
-@media (max-width: 1440px) {
+/* Large Desktop */
+@media (max-width: 1391px) {
   .desktop-only,
   .global-site-header-navigation {
     display: none;
@@ -226,7 +227,8 @@ body.nav-open {
     padding: 8px 24px;
   }
 }
-@media (max-width: 1024px) {
+/* Desktop */
+@media (max-width: 1023px) {
   .global-site-header-container {
     min-height: 64px;
     padding: 0 24px;
@@ -242,7 +244,8 @@ body.nav-open {
     font-size: 14px;
   }
 }
-@media (max-width: 768px) {
+/* Tablet / Mobile */
+@media (max-width: 767px) {
   .global-site-header-container {
     padding: 0 18px;
   }
@@ -255,7 +258,7 @@ body.nav-open {
   }
   .page-title h1 {
     padding: 6px 20px;
-    font-size: 24px;
+    font-size: 20px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
