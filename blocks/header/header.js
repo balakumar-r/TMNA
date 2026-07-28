@@ -10,55 +10,64 @@ function createNavLink(link) {
   return li;
 }
 
-function buildHeader(logoImg, links) {
+function buildHeader(logoImg, links, pageTitleText) {
   const wrapper = document.createElement('div');
   wrapper.className = 'global-site-header';
 
   wrapper.innerHTML = `
-    <div class="global-site-header-wrapper">
-      <div class="global-site-header-container">
+  <div class="global-site-header-wrapper">
+    <div class="global-site-header-container">
 
-        <div class="global-site-header-logo"></div>
+      <div class="global-site-header-logo"></div>
+
+      <button
+        class="hamburger-button"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="menu-drawer">
+        ☰
+      </button>
+
+      <div
+        id="menu-drawer"
+        class="menu-drawer"
+        aria-hidden="true">
 
         <button
-          class="hamburger-button"
-          aria-label="Toggle navigation"
-          aria-expanded="false"
-          aria-controls="menu-drawer">
-          ☰
+          class="close-button"
+          aria-label="Close navigation">
+
+          <span class="text">Close</span>
+          <span class="icon">×</span>
+
         </button>
 
-        <div
-          id="menu-drawer"
-          class="menu-drawer"
-          aria-hidden="true">
-
-          <button
-            class="close-button"
-            aria-label="Close navigation">
-
-            <span class="text">Close</span>
-            <span class="icon">×</span>
-
-          </button>
-
-          <ul class="global-site-header-links mobile-nav"></ul>
-
-        </div>
-
-        <nav
-          class="global-site-header-navigation"
-          aria-label="Global Site Navigation">
-
-          <ul
-            class="global-site-header-links desktop-only">
-          </ul>
-
-        </nav>
+        <ul class="global-site-header-links mobile-nav"></ul>
 
       </div>
+
+      <nav
+        class="global-site-header-navigation"
+        aria-label="Global Site Navigation">
+
+        <ul
+          class="global-site-header-links desktop-only">
+        </ul>
+
+      </nav>
+
     </div>
-  `;
+  </div>
+
+  ${pageTitleText
+      ? `
+      <div class="page-title">
+        <h1>${pageTitleText}</h1>
+      </div>
+    `
+      : ''
+    }
+`;
 
   const logoContainer =
     wrapper.querySelector('.global-site-header-logo');
@@ -169,10 +178,21 @@ export default async function decorate(block) {
     ...fragment.querySelectorAll('a'),
   ].filter((link) => !link.querySelector('img'));
 
+  const authoredH1 = document.querySelector('main h1');
+
+  const pageTitleText = authoredH1
+    ? authoredH1.textContent.trim()
+    : '';
+
   const header = buildHeader(
     logoImg?.cloneNode(true),
     navLinks,
+    pageTitleText,
   );
+
+  if (authoredH1) {
+    authoredH1.remove();
+  }
 
   setupMobileMenu(header);
 
