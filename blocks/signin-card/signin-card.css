@@ -1,241 +1,216 @@
 .signin-card-container {
-    display: flex;
-    justify-self: end;
-    background-image: url(https://www.toyota.com/content/dam/ecpc/NX-22.jpg);
+  display: flex;
+  justify-content: flex-end;
+  background-image: url("https://www.toyota.com/content/dam/ecpc/NX-22.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 700px;
 }
-
-.signin-card {
-    width: 100%;
-    max-width: 360px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    margin: 0 100px;
-    opacity: 0.9;
+.signin-card-container .signin-card {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  opacity: 0.9;
 }
-
-.signin-card-inner {
-    width: 100%;
-    min-height: 680px;
-    padding: 32px;
-    box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.86);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+.signin-card-container .signin-card-inner {
+  width: 100%;
+  padding: 38px 24px 40px;
+  margin: 40px auto;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
 }
-
-.signin-card-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 28px;
+.signin-card-container .signin-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
 }
-
-.signin-card-icon img,
-.signin-card-icon picture {
-    display: block;
-    width: 92px;
-    max-width: 92px;
-    height: auto;
+.signin-card-container .signin-card-icon img,
+.signin-card-container .signin-card-icon picture {
+  display: block;
+  width: 78px;
+  max-width: 78px;
+  height: auto;
 }
-
-.signin-card-description {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 40px;
+.signin-card-container .signin-card-description {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 32px;
 }
-
-.signin-card-description p {
-    margin: 0;
-    color: var(--color-gray-text);
-    font-size: 14px;
-    font-weight: 400;
+.signin-card-container .signin-card-description p {
+  margin: 0;
+  color: #4a4a4a;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.signin-card-container .signin-card-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.signin-card-container .signin-card-actions a {
+  color: #4a4a4a;
+  text-decoration: none;
+}
+.signin-card-container .signin-card-actions a:first-child {
+  color: #ffffff;
+}
+.signin-card-container .signin-card-btn {
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 18px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.signin-card-container .signin-card-btn:focus-visible {
+  outline: 2px solid #007aff;
+  outline-offset: 3px;
+}
+.signin-card-container .signin-card-btn-primary {
+  color: #ffffff;
+  background: #000000;
+  border: 1px solid #000000;
+  margin-bottom: 28px;
+}
+.signin-card-container .signin-card-btn-primary:hover, .signin-card-container .signin-card-btn-primary:focus-visible {
+  background: #58595b;
+  border-color: #58595b;
+}
+.signin-card-container .signin-card-btn-secondary {
+  color: #58595b;
+  background: transparent;
+  border: 1px solid #4a4a4a;
+}
+.signin-card-container .signin-card-btn-guest {
+  margin-top: 0;
+}
+.signin-card-container .signin-card-divider {
+  width: 100%;
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #939393;
+}
+.signin-card-container .signin-card-divider::before, .signin-card-container .signin-card-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #4a4a4a;
+}
+.signin-card-container .signin-card-divider span {
+  color: #939393;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+}
+.signin-card-container {
+  /* Tablet */
+}
+@media (min-width: 768px) {
+  .signin-card-container .signin-card {
+    max-width: 420px;
+    margin: 0 60px 0 auto;
+  }
+  .signin-card-container .signin-card-inner {
+    min-height: auto;
+    padding: 46px 40px 48px;
+    background: rgba(255, 255, 255, 0.88);
+  }
+  .signin-card-container .signin-card-icon img,
+  .signin-card-container .signin-card-icon picture {
+    width: 60px;
+    max-width: 60px;
+  }
+  .signin-card-container .signin-card-description p {
+    font-size: 19px;
     line-height: 26px;
-}
-
-.signin-card-actions {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-}
-
-.signin-card-actions a:first-child {
-    color: var(--color-white);
-    text-decoration: none;
-}
-
-.signin-card-actions a {
-    color: var(--color-gray-text);
-    text-decoration: none;
-}
-
-.signin-card-btn {
-    width: 100%;
-    min-height: 50px;
-    box-sizing: border-box;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 16px;
-    border-radius: 0;
-    cursor: pointer;
-    transition:
-        background-color 0.25s ease,
-        color 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
-}
-
-.signin-card-btn-primary {
-    color: var(--color-white);
-    background: var(--color-black);
-    border: 1px solid var(--color-black);
+  }
+  .signin-card-container .signin-card-btn {
+    min-height: 58px;
+    font-size: 17px;
+  }
+  .signin-card-container .signin-card-btn-primary {
     margin-bottom: 36px;
-}
-
-.signin-card-btn-primary:hover,
-.signin-card-btn-primary:focus-visible {
-    background: var(--color-gray-dark);
-    border-color: var(--color-gray-dark);
-}
-
-.signin-card-btn-secondary {
-    color: var(--color-gray-dark);
-    background: transparent;
-    border: 1px solid var(--color-gray);
-}
-
-.signin-card-btn:focus-visible {
-    outline: 2px solid var(--color-blue);
-    outline-offset: 3px;
-}
-
-.signin-card-divider {
-    width: 100%;
+  }
+  .signin-card-container .signin-card-divider {
     margin: 36px 0;
-    display: flex;
-    align-items: center;
     gap: 16px;
-    color: var(--muted-text);
+  }
+  .signin-card-container .signin-card-divider span {
+    font-size: 20px;
+  }
 }
-
-.signin-card-divider::before,
-.signin-card-divider::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--color-gray);
+.signin-card-container {
+  /* Desktop */
 }
-
-.signin-card-divider span {
-    color: var(--muted-text);
+@media (min-width: 1024px) {
+  .signin-card-container .signin-card {
+    max-width: 360px;
+    margin: 0 100px 0 auto;
+  }
+  .signin-card-container .signin-card-inner {
+    padding: 32px;
+    margin: 60px auto;
+    background: rgba(255, 255, 255, 0.86);
+  }
+  .signin-card-container .signin-card-icon {
+    margin-bottom: 28px;
+  }
+  .signin-card-container .signin-card-icon img,
+  .signin-card-container .signin-card-icon picture {
+    width: 50px;
+    max-width: 50px;
+  }
+  .signin-card-container .signin-card-description {
+    margin-bottom: 40px;
+  }
+  .signin-card-container .signin-card-description p {
+    font-size: 14px;
+    line-height: 26px;
+  }
+  .signin-card-container .signin-card-btn {
+    min-height: 50px;
+    padding: 0;
+    font-size: 14px;
+  }
+  .signin-card-container .signin-card-btn-primary {
+    margin-bottom: 36px;
+  }
+  .signin-card-container .signin-card-divider {
+    margin: 36px 0;
+    gap: 16px;
+  }
+  .signin-card-container .signin-card-divider span {
     font-size: 24px;
-    font-weight: 400;
-    line-height: 1;
+  }
 }
 
-.signin-card-btn-guest {
-    margin-top: 0;
-}
-
-/* Optional: when signin-card is placed inside hero */
+/* Hero Integration */
 .hero .signin-card-wrapper {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 }
-
-/* Tablet */
-@media (width <= 991px) {
-    .signin-card {
-        max-width: 420px;
-    }
-
-    .signin-card-inner {
-        min-height: auto;
-        padding: 46px 40px 48px;
-    }
-
-    .signin-card-description p {
-        font-size: 19px;
-    }
-
-    .signin-card-btn {
-        min-height: 58px;
-        font-size: 17px;
-    }
-}
-
-/* Mobile */
-@media (width <= 767px) {
-    .signin-card {
-        max-width: 100%;
-    }
-
-    .signin-card-inner {
-        padding: 38px 24px 40px;
-        background: rgba(255, 255, 255, 0.92);
-    }
-
-    .signin-card-icon {
-        margin-bottom: 24px;
-    }
-
-    .signin-card-icon img,
-    .signin-card-icon picture {
-        width: 78px;
-        max-width: 78px;
-    }
-
-    .signin-card-description {
-        margin-bottom: 32px;
-    }
-
-    .signin-card-description p {
-        font-size: 18px;
-        line-height: 1.5;
-    }
-
-    .signin-card-btn {
-        min-height: 56px;
-        padding: 14px 18px;
-        font-size: 16px;
-    }
-
-    .signin-card-btn-primary {
-        margin-bottom: 28px;
-    }
-
-    .signin-card-divider {
-        margin: 30px 0;
-        gap: 14px;
-    }
-
-    .signin-card-divider span {
-        font-size: 22px;
-    }
-}
-
-/* Small mobile */
-@media (width <= 480px) {
-    .signin-card-inner {
-        padding: 34px 20px 36px;
-    }
-
-    .signin-card-description p {
-        font-size: 17px;
-    }
-
-    .signin-card-btn {
-        font-size: 15px;
-    }
-}
+/*# sourceMappingURL=signin-card.css.map */
