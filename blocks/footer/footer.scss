@@ -1,16 +1,19 @@
 @use '../../styles/tokens' as *;
 
 footer {
-	//background-color: var(--light-color);
-	font-size: var(--body-font-size-xs);
-	.footer {
-		p {
-			margin: 0;
-		}
-	}
+    //background-color: var(--light-color);
+    font-size: var(--body-font-size-xs);
+
+    .footer {
+        p {
+            margin: 0;
+        }
+    }
+
     .tmna-footer-section {
         background: var(--color-off-white);
         padding: 40px 0;
+
         ul {
             list-style: none;
             padding: 0;
@@ -18,29 +21,35 @@ footer {
             display: flex;
             align-items: start;
             flex-direction: column;
-            @media (width >= #{$bp-tablet}) {
+
+            @media (width >=#{$bp-tablet}) {
                 height: 36px;
                 align-items: center;
                 padding: 20px 0;
                 flex-direction: row;
             }
+
             li {
                 padding: 0 10px 0 0;
                 border-right: 0 solid #b8b8b8;
                 line-height: 1em;
                 margin-right: 10px;
                 margin-bottom: 15px;
+
                 &:last-child {
                     border-right: 0;
                 }
-                @media (width >= #{$bp-tablet}) {
+
+                @media (width >=#{$bp-tablet}) {
                     border-right-width: 2px;
                     margin-bottom: 0;
                 }
+
                 a {
                     color: var(--color-gray-dark);
                     transition: color .3s;
                     font-size: 1rem;
+
                     &:hover {
                         color: var(--color-red-darker);
                         cursor: pointer;
@@ -50,22 +59,25 @@ footer {
             }
         }
     }
-   .tmna-footer-links {
-    padding: 40px 0;
-	.columns-wrapper {
-		.columns {
-			>div {
-				>.columns-img-col {
-					img {
-						height: 48px;
-						width: auto;
-						object-fit: contain;
-					}
-				}
-			}
-		}
-	}
-    ul {
+
+    .tmna-footer-links {
+        padding: 40px 0;
+
+        .columns-wrapper {
+            .columns {
+                >div {
+                    >.columns-img-col {
+                        img {
+                            height: 48px;
+                            width: auto;
+                            object-fit: contain;
+                        }
+                    }
+                }
+            }
+        }
+
+        ul {
             list-style: none;
             transition: color .3s;
             flex-direction: column;
@@ -73,14 +85,17 @@ footer {
             line-height: 1.75em;
             margin-left: 25px;
             padding: 0;
+
             li {
                 padding: 0;
                 line-height: 1.75em;
                 margin-right: 10px;
+
                 a {
                     color: var(--color-gray-dark);
                     transition: color .3s;
                     font-size: 1rem;
+
                     &:hover {
                         color: var(--color-red-darker);
                         cursor: pointer;
@@ -89,53 +104,62 @@ footer {
                 }
             }
         }
-}
-.tmna-footer-privacy {
-    .columns.block {
-        >div {
-            >div:last-child {
-                @media (width >= #{$bp-tablet}) {
-                    display: flex;
-                    justify-content: end;
-                }
+    }
 
+    .tmna-footer-privacy {
+        .columns.block {
+            >div {
+                >div:last-child {
+                    @media (width >=#{$bp-tablet}) {
+                        display: flex;
+                        justify-content: end;
+                    }
+
+                }
             }
         }
-    }
-    p {
-        font-size: 16px;
-        margin: 20px 0;
-        color: var(--color-gray-dark);
-    }
-    ul {
+
+        p {
+            font-size: 16px;
+            margin: 20px 0;
+            color: var(--color-gray-dark);
+        }
+
+        ul {
             list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
             align-items: start;
             flex-direction: column;
-            @media (width >= #{$bp-tablet}) {
+
+            @media (width >=#{$bp-tablet}) {
                 height: 36px;
                 padding: 20px 0;
                 flex-direction: row;
             }
+
             li {
                 padding: 0 10px 0 0;
                 border-right: 0 solid #b8b8b8;
                 line-height: 1em;
                 margin-right: 10px;
                 margin-bottom: 15px;
+
                 &:last-child {
                     border-right: 0;
                 }
-                @media (width >= #{$bp-tablet}) {
+
+                @media (width >=#{$bp-tablet}) {
                     border-right-width: 2px;
                     margin-bottom: 0;
                 }
+
                 a {
                     color: var(--color-gray-dark);
                     transition: color .3s;
                     font-size: 1rem;
+
                     &:hover {
                         color: var(--color-red-darker);
                         cursor: pointer;
@@ -144,5 +168,41 @@ footer {
                 }
             }
         }
-}
+    }
+
+    .tmna-footer-media {
+        .columns-wrapper:first-child {
+            .columns div {
+                div:first-child {
+                    width: 100%;
+
+                    @media (width >=#{$bp-tablet}) {
+                        min-width: 60%;
+                    }
+                }
+
+                div:last-child {
+                    gap: 10px;
+                    display: flex;
+                    justify-content: end;
+                    @media (max-width: 991px) {
+                        order: 1;
+                        justify-content: flex-start;
+                    }
+
+                    p,
+                    a {
+                        display: inline-block;
+                        gap: 10px;
+                        display: flex;
+
+                        img:hover {
+                            transform: scale(1.05);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
