@@ -10,9 +10,9 @@
     "limit": 4,
     "data": [
       {
-        "name": "Footer",
-        "path": "/docs/library/blocks/footer",
-        "url": "https://github.com/balakumar-r/tmna/tree/main/blocks/footer"
+        "name": "Sitemap",
+        "path": "/docs/library/blocks/sitemap",
+        "url": "https://github.com/balakumar-r/tmna/tree/main/blocks/sitemap"
       },
       {
         "name": "Hero Video",
