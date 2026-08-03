@@ -10,6 +10,11 @@
     "limit": 4,
     "data": [
       {
+        "name": "Dynamic columns",
+        "path": "/docs/library/blocks/sitemap",
+        "url": "https://github.com/balakumar-r/tmna/tree/main/blocks/dynamic-columns"
+      },
+      {
         "name": "Sitemap",
         "path": "/docs/library/blocks/sitemap",
         "url": "https://github.com/balakumar-r/tmna/tree/main/blocks/sitemap"
