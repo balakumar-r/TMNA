@@ -3,9 +3,7 @@
  *
  * Expected authoring:
  * Brand | toyota / lexus
- * Class Name | cards-media-right
- *
- * If Brand or Class Name is not authored, it will not throw error.
+ * ClassName | cards-media-right
  *
  * @param {HTMLElement} block
  * @returns {{ brand: string, className: string }}
@@ -38,6 +36,7 @@ export function getBlockConfig(block) {
 
     if (label === 'brand') {
       config.brand = value.toLowerCase();
+      row.remove();
     }
 
     if (
@@ -46,6 +45,7 @@ export function getBlockConfig(block) {
       || label === 'class'
     ) {
       config.className = value;
+      row.remove();
     }
   });
 

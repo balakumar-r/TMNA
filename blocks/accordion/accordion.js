@@ -1,11 +1,36 @@
-function decorateAccordionV1(block) {
+import { getBlockConfig } from '../../scripts/utils/block-config.js';
+
+const metadataLabels = ['brand', 'class name', 'classname', 'class'];
+
+function getRowLabel(row) {
+  return row.children[0]?.textContent?.trim().toLowerCase();
+}
+
+function isMetadataRow(row) {
+  return metadataLabels.includes(getRowLabel(row));
+}
+
+function isIconRow(row) {
+  return getRowLabel(row) === 'icon';
+}
+
+function getContentRows(block) {
+  return [...block.children].filter((row) => !isMetadataRow(row));
+}
+
+function removeMetadataRows(block) {
+  [...block.children].filter(isMetadataRow).forEach((row) => row.remove());
+}
+
+function decorateAccordionV1(block, config) {
   const wrapper = document.createElement('div');
   wrapper.className = 'accordion-v1';
+  if (config.className) wrapper.classList.add(config.className);
 
   const allTriggers = [];
   const allPanels = [];
 
-  [...block.children].forEach((row, idx) => {
+  getContentRows(block).forEach((row, idx) => {
     const item = document.createElement('div');
     item.className = 'accordion-v1-item';
 
@@ -91,17 +116,18 @@ function decorateAccordionV1(block) {
   block.replaceChildren(wrapper);
 }
 
-function decorateAccordionV2(block) {
+function decorateAccordionV2(block, config) {
   const blockName = 'accordion-v2';
+  removeMetadataRows(block);
   const rows = [...block.children];
 
   const configRow = rows[rows.length - 1];
-  const isConfigRow = configRow
-    && configRow.children[0]?.textContent.trim().toLowerCase() === 'icon';
+  const isConfigRow = configRow && isIconRow(configRow);
 
   const panelRows = isConfigRow ? rows.slice(0, -1) : rows;
 
   block.classList.add(`${blockName}--decorated`);
+  if (config.className) block.classList.add(config.className);
 
   panelRows.forEach((row, index) => {
     const [titleCell, contentCell] = row.children;
@@ -172,10 +198,12 @@ function decorateAccordionV2(block) {
 }
 
 export default function decorate(block) {
+  const config = getBlockConfig(block);
+
   if (block.classList.contains('accordion-v2')) {
-    decorateAccordionV2(block);
+    decorateAccordionV2(block, config);
     return;
   }
 
-  decorateAccordionV1(block);
+  decorateAccordionV1(block, config);
 }
