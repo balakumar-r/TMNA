@@ -1,22 +1,22 @@
 import { getBlockConfig } from '../../scripts/utils/block-config.js';
 
 /* ==========================================================================
-   Tabs V1 Logic
+   Tabs Standard Logic
    ========================================================================== */
-function decorateTabsV1(block) {
-  block.classList.add('tabs-v1');
+function decorateTabsStandard(block) {
+  block.classList.add('tabs-standard');
   const links = [...block.querySelectorAll('a')];
   const isInEditor = window.self !== window.top;
 
   if (block.parentElement) {
-    block.parentElement.classList.add('tabs-v1-wrapper');
+    block.parentElement.classList.add('tabs-standard-wrapper');
   }
 
   links.forEach((link) => {
     const wrapper = link.closest(':scope > div, div');
 
     if (wrapper) {
-      wrapper.classList.add('tabs-item');
+      wrapper.classList.add('tabs-standard-item');
     }
 
     link.addEventListener('click', (e) => {
@@ -38,7 +38,7 @@ function decorateTabsV1(block) {
 
   const sections = links
     .map((link) => ({
-      wrapper: link.closest('.tabs-item'),
+      wrapper: link.closest('.tabs-standard-item'),
       section: document.getElementById(
         link.getAttribute('href')?.replace('#', ''),
       ),
@@ -46,7 +46,7 @@ function decorateTabsV1(block) {
     .filter((item) => item.section);
 
   function setActive(wrapper) {
-    block.querySelectorAll('.tabs-item').forEach((tab) => {
+    block.querySelectorAll('.tabs-standard-item').forEach((tab) => {
       tab.classList.remove('active');
     });
 
@@ -88,7 +88,7 @@ function decorateTabsV1(block) {
   if (isInEditor) return;
 
   const placeholder = document.createElement('div');
-  placeholder.className = 'tabs-v1-placeholder';
+  placeholder.className = 'tabs-standard-placeholder';
   block.parentNode.insertBefore(placeholder, block);
 
   let start = 0;
@@ -146,16 +146,16 @@ function decorateTabsV1(block) {
 }
 
 /* ==========================================================================
-   Tabs V2 Logic
+   Tabs With Buttons Logic
    ========================================================================== */
-function decorateTabsV2(block) {
-  block.classList.add('tabs-v2');
+function decorateTabsWithButtons(block) {
+  block.classList.add('tabs-with-buttons');
 
   const tabNav = document.createElement('div');
-  tabNav.classList.add('tabs-v2-nav');
+  tabNav.classList.add('tabs-with-buttons-nav');
 
   const scrollGroup = document.createElement('div');
-  scrollGroup.classList.add('tabs-v2-scroll-group');
+  scrollGroup.classList.add('tabs-with-buttons-scroll-group');
 
   const rows = [...block.children];
 
@@ -166,14 +166,14 @@ function decorateTabsV2(block) {
 
       if (linkCell) {
         const vehicleBtn = document.createElement('div');
-        vehicleBtn.classList.add('tabs-v2-item', 'select-vehicle');
+        vehicleBtn.classList.add('tabs-with-buttons-item', 'select-vehicle');
 
         const anchor =
           linkCell.querySelector('a') || document.createElement('span');
         if (!linkCell.querySelector('a')) {
           anchor.textContent = linkCell.textContent.trim();
         }
-        anchor.classList.add('tabs-v2-link');
+        anchor.classList.add('tabs-with-buttons-link');
 
         const plusIcon = document.createElement('span');
         plusIcon.classList.add('icon-plus');
@@ -189,7 +189,7 @@ function decorateTabsV2(block) {
     const tabCell = row.children[0];
     if (tabCell) {
       const tabItem = document.createElement('div');
-      tabItem.classList.add('tabs-v2-item');
+      tabItem.classList.add('tabs-with-buttons-item');
 
       const anchor =
         tabCell.querySelector('a') || document.createElement('a');
@@ -197,7 +197,7 @@ function decorateTabsV2(block) {
         anchor.textContent = tabCell.textContent.trim();
         anchor.href = '#';
       }
-      anchor.classList.add('tabs-v2-link');
+      anchor.classList.add('tabs-with-buttons-link');
 
       const textSpan = document.createElement('span');
       textSpan.classList.add('tabs-text');
@@ -221,22 +221,22 @@ function decorateTabsV2(block) {
 }
 
 /* ==========================================================================
-   Tabs V3 Logic
+   Tabs With Grey Background Logic
    ========================================================================== */
-function decorateTabsV3(block) {
-  block.classList.add('tab-v3');
+function decorateTabsWithGreyBackground(block) {
+  block.classList.add('tabs-with-grey-background');
   const links = [...block.querySelectorAll('a')];
   const isInEditor = window.self !== window.top;
 
   if (block.parentElement) {
-    block.parentElement.classList.add('tab-v3-wrapper');
+    block.parentElement.classList.add('tabs-with-grey-background-wrapper');
   }
 
   links.forEach((link) => {
     const wrapper = link.closest(':scope > div, div');
 
     if (wrapper) {
-      wrapper.classList.add('tab-item');
+      wrapper.classList.add('tabs-with-grey-background-item');
     }
 
     link.addEventListener('click', (e) => {
@@ -258,7 +258,7 @@ function decorateTabsV3(block) {
 
   const sections = links
     .map((link) => ({
-      wrapper: link.closest('.tab-item'),
+      wrapper: link.closest('.tabs-with-grey-background-item'),
       section: document.getElementById(
         link.getAttribute('href')?.replace('#', ''),
       ),
@@ -266,7 +266,7 @@ function decorateTabsV3(block) {
     .filter((item) => item.section);
 
   function setActive(wrapper) {
-    block.querySelectorAll('.tab-item').forEach((tab) => {
+    block.querySelectorAll('.tabs-with-grey-background-item').forEach((tab) => {
       tab.classList.remove('active');
     });
 
@@ -308,7 +308,7 @@ function decorateTabsV3(block) {
   if (isInEditor) return;
 
   const placeholder = document.createElement('div');
-  placeholder.className = 'tab-v3-placeholder';
+  placeholder.className = 'tabs-with-grey-background-placeholder';
   block.parentNode.insertBefore(placeholder, block);
 
   let start = 0;
@@ -386,23 +386,21 @@ export default function decorate(block) {
 
   // 3. Variant Check & Routing
   if (
-    block.classList.contains('tabs-v2') ||
-    className === 'tabs-v2'
+    block.classList.contains('tabs-with-buttons') ||
+    className === 'tabs-with-buttons'
   ) {
-    decorateTabsV2(block);
+    decorateTabsWithButtons(block);
     return;
   }
 
   if (
-    block.classList.contains('tabs-v3') ||
-    block.classList.contains('tab-v3') ||
-    className === 'tabs-v3' ||
-    className === 'tab-v3'
+    block.classList.contains('tabs-with-grey-background') ||
+    className === 'tabs-with-grey-background'
   ) {
-    decorateTabsV3(block);
+    decorateTabsWithGreyBackground(block);
     return;
   }
 
-  // Default: Tabs V1
-  decorateTabsV1(block);
+  // Default: Tabs Standard
+  decorateTabsStandard(block);
 }

@@ -4,22 +4,22 @@
   width: 100%;
 
   /* ==========================================================================
-     Tabs V1
+     Tabs Standard
      ========================================================================== */
-  .tabs-v1-wrapper {
+  .tabs-standard-wrapper {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
   }
 
-  .tabs-v1-placeholder {
+  .tabs-standard-placeholder {
     display: none;
     &.is-active {
       display: block;
     }
   }
 
-  .tabs-v1 {
+  .tabs-standard {
     &,
     * {
       box-sizing: border-box;
@@ -85,7 +85,7 @@
       }
     }
 
-    .tabs-item.active {
+    .tabs-standard-item.active {
       background: var(--color-gray-background);
 
       a,
@@ -144,7 +144,7 @@
         background: var(--color-gray-background);
       }
 
-      .tabs-item.active {
+      .tabs-standard-item.active {
         background-color: var(--color-white);
 
         a,
@@ -172,14 +172,14 @@
   }
 
   /* ==========================================================================
-     Tabs V2
+     Tabs With Buttons
      ========================================================================== */
-  .tabs-v2-wrapper {
+  .tabs-with-buttons-wrapper {
     background-color: var(--color-black);
     width: 100%;
   }
 
-  .tabs-v2 {
+  .tabs-with-buttons {
     max-width: 1440px;
     margin: 0 auto;
     background-color: var(--color-black);
@@ -189,7 +189,7 @@
       padding: 12px 16px;
     }
 
-    .tabs-v2-nav {
+    .tabs-with-buttons-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -203,7 +203,7 @@
       }
     }
 
-    .tabs-v2-scroll-group {
+    .tabs-with-buttons-scroll-group {
       display: flex;
       align-items: center;
       gap: 16px;
@@ -214,12 +214,12 @@
       }
     }
 
-    .tabs-v2-item {
+    .tabs-with-buttons-item {
       display: inline-flex;
       align-items: center;
 
       &:not(.select-vehicle) {
-        .tabs-v2-link:hover {
+        .tabs-with-buttons-link:hover {
           background-color: var(--color-gray-dark);
 
           .hover-arrow {
@@ -232,7 +232,7 @@
       &.select-vehicle {
         flex-shrink: 0;
 
-        .tabs-v2-link {
+        .tabs-with-buttons-link {
           border: none;
           background: transparent;
           padding: 0;
@@ -257,7 +257,7 @@
       }
     }
 
-    .tabs-v2-link {
+    .tabs-with-buttons-link {
       position: relative;
       color: var(--color-white);
       text-decoration: none;
@@ -294,22 +294,22 @@
   }
 
   /* ==========================================================================
-     Tabs V3
+     Tabs With Grey Background
      ========================================================================== */
-  .tab-v3-wrapper {
+  .tabs-with-grey-background-wrapper {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
   }
 
-  .tab-v3-placeholder {
+  .tabs-with-grey-background-placeholder {
     display: none;
     &.is-active {
       display: block;
     }
   }
 
-  .tab-v3 {
+  .tabs-with-grey-background {
     &,
     * {
       box-sizing: border-box;
@@ -375,7 +375,7 @@
       }
     }
 
-    .tab-item.active {
+    .tabs-with-grey-background-item.active {
       background: var(--color-tab-bg-mob);
 
       a,
@@ -431,7 +431,7 @@
         color: var(--color-black);
       }
 
-      .tab-item.active {
+      .tabs-with-grey-background-item.active {
         background-color: var(--color-white);
 
         a,
