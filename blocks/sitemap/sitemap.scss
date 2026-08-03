@@ -1,20 +1,20 @@
 @use '../../styles/tokens' as *;
 /* ---------- Sitemap Block ---------- */
-.sitemap-v1 {
+.sitemap {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0px 24px;
   font-family: Arial, sans-serif;
   border-top: 1px solid var(--color-gray-light); /* Adds the horizontal line above the block */
 
-  .sitemap-v1-title {
+  .sitemap-title {
     font-size: 28px;
     font-weight: 700;
     color: var(--color-black);
     margin-bottom: 32px;
   }
 
-  .sitemap-v1-columns {
+  .sitemap-columns {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
@@ -25,12 +25,12 @@
     }
   }
 
-  .sitemap-v1-column {
+  .sitemap-column {
     display: flex;
     flex-direction: column;
   }
 
-  .sitemap-v1-list {
+  .sitemap-list {
     list-style: none;
     margin: 0;
     padding: 0;
