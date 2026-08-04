@@ -577,7 +577,7 @@ function decorateBlocks(main) {
 /**
  * Loads a block named 'header-unified' into header. The block resolves which
  * header variant to render from the nav document, so no variant is named here.
- * @param {Element} header header element
+ * @param {Element} header header element 
  * @returns {Promise}
  */
 async function loadHeader(header) {
