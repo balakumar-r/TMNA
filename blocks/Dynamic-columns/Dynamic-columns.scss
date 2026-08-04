@@ -279,7 +279,7 @@
   /* Columns Standard */
   .columns-standard {
     max-width: 1054px;
-    margin: 0 auto;
+    margin: 0 auto; 
     padding: 0 35px;
 
     @media (width = #{$bp-tablet}) {
