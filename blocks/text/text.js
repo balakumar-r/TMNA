@@ -219,45 +219,45 @@ function decorateTextV1(block) {
   }
   
   export default function decorate(block) {
-  // 1. Extract Config
-  const { brand, className } = getBlockConfig(block);
-
-  if (brand === 'toyota') {
-    console.log('Toyota block');
+    // 1. Extract Config
+    const { brand, className } = getBlockConfig(block);
+  
+    if (brand === 'toyota') {
+      console.log('Toyota block');
+    }
+  
+    if (brand === 'lexus') {
+      console.log('Lexus block');
+    }
+  
+    // 2. Remaining children are content rows
+    const contentRows = [...block.children];
+  
+    // 3. Variant Dispatch
+    if (
+      block.classList.contains('text-standard-privacy') ||
+      className === 'text-standard-privacy'
+    ) {
+      decorateTextV4(block, contentRows);
+      return;
+    }
+  
+    if (
+      block.classList.contains('text-two-column') ||
+      className === 'text-two-column'
+    ) {
+      decorateTextV3(block, contentRows);
+      return;
+    }
+  
+    if (
+      block.classList.contains('text-three-column') ||
+      className === 'text-three-column'
+    ) {
+      decorateTextV2(block, contentRows);
+      return;
+    }
+  
+    // Default Variant
+    decorateTextV1(block, contentRows);
   }
-
-  if (brand === 'lexus') {
-    console.log('Lexus block');
-  }
-
-  // 2. Remaining children are content rows
-  const contentRows = [...block.children];
-
-  // 3. Variant Dispatch
-  if (
-    block.classList.contains('text-standard-privacy') ||
-    className === 'text-standard-privacy'
-  ) {
-    decorateTextV4(block, contentRows);
-    return;
-  }
-
-  if (
-    block.classList.contains('text-two-column') ||
-    className === 'text-two-column'
-  ) {
-    decorateTextV3(block, contentRows);
-    return;
-  }
-
-  if (
-    block.classList.contains('text-three-column') ||
-    className === 'text-three-column'
-  ) {
-    decorateTextV2(block, contentRows);
-    return;
-  }
-
-  // Default Variant
-  decorateTextV1(block, contentRows);
-}
