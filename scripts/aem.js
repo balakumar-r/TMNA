@@ -575,12 +575,14 @@ function decorateBlocks(main) {
 }
 
 /**
- * Loads a block named 'header' into header
+ * Loads a block named 'header-unified' into header. The block resolves which
+ * header variant to render from the nav document, so no variant is named here.
  * @param {Element} header header element
  * @returns {Promise}
  */
 async function loadHeader(header) {
-  const headerBlock = buildBlock('header', '');
+  if (!header) return null;
+  const headerBlock = buildBlock('header-unified', '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
   return loadBlock(headerBlock);
