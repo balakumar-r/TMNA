@@ -1,67 +1,233 @@
-.table {
-  width: 100%;
-  overflow-x: auto;
+.table-container:has(.table-with-media) {
+  background-color: var(--color-blue-light);
+  padding: 48px 0;
+}
+.table-container:has(.table-with-media) .table-wrapper {
+  padding: 0 20px;
+}
+@media (width >= 768px) {
+  .table-container:has(.table-with-media) .table-wrapper {
+    width: auto;
+    padding: 0 50px;
+  }
+}
+@media (width >= 1024px) {
+  .table-container:has(.table-with-media) .table-wrapper {
+    max-width: 1054px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
 }
 
-.table table {
+.table-with-media {
   width: 100%;
-  max-width: 100%;
+  margin: 0 auto;
+  background-color: var(--color-white);
   border-collapse: collapse;
+  padding: 0;
+}
+.table-with-media .table {
+  border-spacing: 10px;
+  overflow-x: scroll;
+  table-layout: initial;
+  display: block;
+  padding: 20px;
+}
+@media (width >= 1024px) {
+  .table-with-media .table {
+    overflow-x: unset;
+  }
+}
+.table-with-media .table__head .table__row {
+  border-top: 0;
+  border-bottom: 0;
+}
+.table-with-media .table__head .table__row .table__cell--header {
+  text-align: center;
+  font-weight: 400;
+  color: var(--color-text-black);
+  text-align: center;
+  vertical-align: middle;
+}
+.table-with-media .table__head .table__row .table__cell--header:not(:first-child) {
+  width: 100%;
+  vertical-align: top;
+  background-color: var(--color-gray-background);
+}
+@media (width >= 1024px) {
+  .table-with-media .table__head .table__row .table__cell--header:not(:first-child) {
+    width: 192px;
+  }
+}
+.table-with-media .table__head .table__row .table__cell--header:first-child {
+  text-align: left;
+  color: var(--color-red-light);
+  font-size: var(--heading-font-size-s);
+  line-height: 1.5;
+  font-weight: bold;
+  background-color: var(--color-white);
+  padding: 0;
+}
+.table-with-media .table__head .table__row .table__cell--header p {
+  margin: 0;
+  width: 200px;
+}
+@media (width >= 1024px) {
+  .table-with-media .table__head .table__row .table__cell--header p {
+    width: auto;
+  }
+}
+.table-with-media .table__head .table__row .table__cell--header p:not(:first-child) {
+  padding: 20px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.table-with-media .table__head .table__row .table__cell--header p:has(picture) {
+  margin-bottom: 0;
+  width: 100%;
+}
+.table-with-media .table__head .table__row .table__cell--header img,
+.table-with-media .table__head .table__row .table__cell--header picture {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.table-with-media .table__body {
+  background-color: var(--color-white);
+}
+.table-with-media .table__body .table__row {
+  border-bottom: 0;
+}
+.table-with-media .table__body .table__cell .table__cell--body:has(p) {
+  margin: 10px;
+}
+.table-with-media .table__body .table__cell--body {
+  padding: 0;
+  color: var(--color-text-black);
+  text-align: center;
+  vertical-align: middle;
+  background-color: var(--color-gray-background);
+}
+.table-with-media .table__body .table__cell--body:has(.table__symbol) {
+  background-color: var(--color-gray-background-light);
+}
+.table-with-media .table__body .table__cell--body p {
+  margin: 0;
+  line-height: 1.4;
+  padding: 20px;
+}
+.table-with-media .table__body .table__cell--body p:not(:first-child) {
+  padding: 20px;
+  font-size: var(--heading-font-size-s-desktop);
+  line-height: 1.4;
+}
+.table-with-media .table__body .table__cell--body p:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-text-light);
+  font-size: var(--body-font-size-s-desktop);
+}
+.table-with-media .table__body .table__cell--body p.table__symbol {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+.table-with-media .table__body .table__cell--body p.table__symbol--check {
+  color: var(--color-green);
+  padding: 0;
+}
+.table-with-media .table__body .table__cell--body p.table__symbol--dash {
+  color: var(--color-red-light);
+  padding: 0;
+  font-size: 37px;
+  font-weight: 100;
+}
+.table-with-media .table__body .table__cell--body p {
+  font-size: 24px;
+  font-weight: bold;
+}
+.table-standard {
+  display: block;
+  width: 100%;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
   font-size: var(--body-font-size-xs);
 }
-
-@media (width >= 600px) {
-  .table table {
+.table-standard::-webkit-scrollbar {
+  display: none;
+}
+.table-standard__table {
+  width: 100%;
+  max-width: 100%;
+  min-width: 600px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: inherit;
+}
+@media (width >= 720px) {
+  .table-standard__table {
     font-size: var(--body-font-size-s);
   }
 }
-
-@media (width >= 900px) {
-  .table table {
+@media (width >= 960px) {
+  .table-standard__table {
     font-size: var(--body-font-size-m);
   }
 }
-
-.table table thead tr {
-  border-top: 2px solid #dadada;
-  border-bottom: 2px solid #dadada;
+.table-standard__table th {
+  font-weight: 400;
 }
-
-.table table tbody tr {
-  border-bottom: 1px solid #dadada;
-}
-
-.table table th {
-  font-weight: 700;
-}
-
-.table table th,
-.table table td {
+.table-standard__table th,
+.table-standard__table td {
   padding: 0.5em;
   text-align: left;
+  vertical-align: top;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  border: 1px solid var(--color-black);
 }
-
-.table table th p,
-.table table td p {
+.table-standard__table th p,
+.table-standard__table td p {
   margin: 0;
 }
-
-.table table td p + p {
+.table-standard__table th p + p,
+.table-standard__table td p + p {
   margin-top: 0.25em;
 }
-
-/* no header variant */
-.table.no-header table tbody tr {
-  border-top: 1px solid #dadada;
+.table-standard__table th ul,
+.table-standard__table th ol,
+.table-standard__table td ul,
+.table-standard__table td ol {
+  margin: 0;
+  padding-left: 1.2em;
 }
-
-/* striped variant */
-.table.striped tbody tr:nth-child(odd) {
+.table-standard__table th li,
+.table-standard__table td li {
+  margin: 0;
+  padding: 0;
+}
+.table-standard__table th a, .table-standard__table th a:visited,
+.table-standard__table td a,
+.table-standard__table td a:visited {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+.table-standard__table th a:hover,
+.table-standard__table td a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+.table-standard.no-header .table-standard__table tbody tr {
+  border-top: 1px solid var(--color-black);
+}
+.table-standard.striped tbody tr:nth-child(odd) {
   background-color: var(--light-color);
 }
-
-/* bordered variant */
-.table.bordered table th,
-.table.bordered table td {
-  border: 1px solid #dadada;
-}
+.table-standard.bordered .table-v2__table th,
+.table-standard.bordered .table-v2__table td {
+  border: 1px solid var(--color-black);
+}/*# sourceMappingURL=table.css.map */
