@@ -369,7 +369,7 @@ function decorateTabsWithGreyBackground(block) {
    Main Block Decorator
    ========================================================================== */
 export default function decorate(block) {
-  // 1. Get configuration meta
+  // 1. Get configuration meta — this also removes Brand/ClassName rows from the DOM
   const { brand, className } = getBlockConfig(block);
 
   if (brand === 'toyota') {
@@ -379,12 +379,7 @@ export default function decorate(block) {
     console.log('Lexus tabs block');
   }
 
-  // 2. Clean out configuration metadata rows before processing block elements
-  const configRowsCount = (brand ? 1 : 0) + (className ? 1 : 0);
-  const rows = [...block.children];
-  rows.slice(0, configRowsCount).forEach((row) => row.remove());
-
-  // 3. Variant Check & Routing
+  // 2. Variant Check & Routing
   if (
     block.classList.contains('tabs-with-buttons') ||
     className === 'tabs-with-buttons'

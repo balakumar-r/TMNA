@@ -160,7 +160,7 @@ function decorateColumnsStandard(block) {
 }
 
 export default function decorate(block) {
-  // 1. Extract Config (Brand, Class Name)
+  // 1. Extract Config (Brand, Class Name) — this also removes those rows from the DOM
   const { brand, className } = getBlockConfig(block);
 
   if (brand === 'toyota') {
@@ -170,12 +170,8 @@ export default function decorate(block) {
     console.log('Lexus block');
   }
 
-  // 2. Remove configuration rows from DOM before rendering layout
-  const configRowsCount = (brand ? 1 : 0) + (className ? 1 : 0);
-  const rows = [...block.children];
-
-  rows.slice(0, configRowsCount).forEach((row) => row.remove());
-  const contentRows = rows.slice(configRowsCount);
+  // 2. Remaining children are all content rows (config rows already removed above)
+  const contentRows = [...block.children];
 
   // 3. Variant Check & Dispatch
   if (
