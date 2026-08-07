@@ -17,7 +17,7 @@ function sampleRUM(checkpoint, data) {
   try {
     window.hlx = window.hlx || {};
     if (!window.hlx.rum || !window.hlx.rum.collector) {
-      sampleRUM.enhance = () => {};
+      sampleRUM.enhance = () => { };
       const params = new URLSearchParams(window.location.search);
       const { currentScript } = document;
       const rate = params.get('rum')
@@ -577,12 +577,11 @@ function decorateBlocks(main) {
 /**
  * Loads a block named 'header-unified' into header. The block resolves which
  * header variant to render from the nav document, so no variant is named here.
- * @param {Element} header header element
+ * @param {Element} header header element 
  * @returns {Promise}
  */
 async function loadHeader(header) {
-  if (!header) return null;
-  const headerBlock = buildBlock('header-unified', '');
+  const headerBlock = buildBlock('header', '')
   header.append(headerBlock);
   decorateBlock(headerBlock);
   return loadBlock(headerBlock);
