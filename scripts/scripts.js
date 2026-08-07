@@ -1,5 +1,4 @@
 import {
-  loadFooter,
   decorateIcons,
   decorateSections,
   decorateBlocks,
@@ -193,6 +192,19 @@ async function loadHeader(header) {
   if (!header) return;
   const block = buildBlock('header-unified', '');
   header.append(block);
+  decorateBlock(block);
+  await loadBlock(block);
+}
+
+/**
+ * Loads the site footer using the unified footer block.
+ * @param {Element} footer The footer element
+ * @returns {Promise}
+ */
+async function loadFooter(footer) {
+  if (!footer) return;
+  const block = buildBlock('footer-unified', '');
+  footer.append(block);
   decorateBlock(block);
   await loadBlock(block);
 }
