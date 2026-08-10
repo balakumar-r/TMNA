@@ -1,0 +1,238 @@
+.select-vehicle-dropdown {
+  height: 500px;
+  background-image: url("https://tmna.aemassets.toyota.com/is/image/toyota/toyota/owners/amcs/hero/HLD_MY22_0005_V001-2-2.png?fmt=jpeg&fit=crop&wid=3838");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-form {
+    width: 100%;
+    max-width: 688px;
+    font-family: inherit;
+  }
+
+  &-form-body {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    min-height: 70px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 22px rgb(0 0 0 / 18%);
+  }
+
+  &-field {
+    position: relative;
+    background: var(--color-white);
+
+    &.is-invalid {
+      .select-vehicle-dropdown-select-wrap {
+        box-shadow: inset 0 0 0 2px var(--color-red-cta);
+      }
+    }
+
+    &-year {
+      width: 168px;
+      flex: 0 0 168px;
+    }
+
+    &-model {
+      flex: 1 1 auto;
+      min-width: 260px;
+      border-left: 1px solid var(--color-black-light);
+    }
+  }
+
+  &-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 0;
+    clip: rect(0 0 0 0);
+  }
+
+  &-required {
+    color: var(--color-red-cta);
+  }
+
+  &-select-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--color-white);
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 22px;
+      width: 13px;
+      height: 13px;
+      border-right: 2px solid var(--color-black);
+      border-bottom: 2px solid var(--color-black);
+      pointer-events: none;
+      transform: translateY(-65%) rotate(45deg);
+    }
+  }
+
+  select {
+    width: 100%;
+    height: 70px;
+    padding: 0 58px 0 20px;
+    border: 0;
+    border-radius: 0;
+    appearance: none;
+    background: transparent;
+    color: var(--color-gray-dark);
+    font: inherit;
+    font-size: 20px;
+    line-height: 1;
+    outline: none;
+    cursor: pointer;
+
+    &:disabled {
+      color: var(--color-text-muted);
+      cursor: not-allowed;
+      background: var(--color-off-white);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-black);
+      outline-offset: 0;
+    }
+  }
+
+  &-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    width: 158px;
+    flex: 0 0 158px;
+    min-height: 70px;
+
+    padding: 0 24px;
+    border: 0;
+    border-radius: 0;
+    appearance: none;
+
+    background: var(--color-text-muted);
+    color: var(--color-white);
+
+    font: inherit;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: not-allowed;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease;
+
+    &.is-enabled {
+      background: var(--color-red-cta);
+      cursor: pointer;
+
+      &:hover,
+      &:focus-visible {
+        background: var(--color-red-hover);
+      }
+    }
+
+    &:disabled {
+      background: var(--color-text-muted);
+      cursor: not-allowed;
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-white);
+      outline-offset: -6px;
+    }
+  }
+
+  &-search-icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+  }
+
+  &-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 14px;
+
+    color: var(--color-white);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.35;
+
+    text-shadow: 0 1px 2px rgb(0 0 0 / 55%);
+  }
+
+  &-signin {
+    color: var(--color-white);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-white);
+      text-decoration-thickness: 2px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &-form {
+      max-width: 100%;
+    }
+
+    &-form-body {
+      flex-direction: column;
+      min-height: 0;
+      border-radius: 8px;
+    }
+
+    &-field {
+      &-year,
+      &-model {
+        width: 100%;
+        flex: 1 1 auto;
+      }
+
+      &-model {
+        min-width: 0;
+        border-left: 0;
+        border-top: 1px solid var(--color-gray-light);
+      }
+    }
+
+    &-submit {
+      width: 100%;
+      flex: 1 1 auto;
+      min-height: 58px;
+      font-size: 17px;
+      border-radius: 0 0 8px 8px;
+    }
+
+    select {
+      height: 58px;
+      font-size: 17px;
+    }
+
+    &-footer {
+      font-size: 16px;
+    }
+  }
+}
