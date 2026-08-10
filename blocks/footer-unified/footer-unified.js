@@ -395,6 +395,44 @@ function decorateFooterBlock(footerBlock) {
 	}
 }
 
+/**
+ * Adopts footer content that was resolved from a fragment.
+ *
+ * loadFragment() runs loadSections() internally, which recursively decorates any nested
+ * footer-unified block. The resolved content therefore arrives fully decorated, wrapped in
+ * one or more main/section/div layers (and, when /footer redirects to a variant fragment,
+ * nested a second time). Re-decorating would flatten the structure; blindly moving whole
+ * subtrees would keep every wrapper. Instead adopt the innermost decorated variant block
+ * directly, keeping its section only when the section carries a styling hook (e.g. the
+ * privacy `__inner` class). Content without a variant block (footer-default/media) is
+ * adopted section-for-section.
+ *
+ * @param {Element} block The footer-unified block to fill
+ * @param {Element} content The resolved fragment content
+ */
+function adoptDecoratedFooter(block, content) {
+	const candidates = [content, ...content.querySelectorAll('.footer-unified')]
+		.filter((el) => el.classList && el.classList.contains('footer-unified'));
+
+	const variantBlock = [...candidates]
+		.reverse()
+		.find((el) => !el.querySelector('.footer-unified'));
+
+	if (!variantBlock) {
+		block.replaceChildren(...content.childNodes);
+		return;
+	}
+
+	const section = variantBlock.closest('.section');
+	const sectionHasHook = section && [...section.classList].some((className) => (
+		className !== 'section'
+		&& !className.endsWith('-container')
+		&& !className.endsWith('-wrapper')
+	));
+
+	block.replaceChildren(sectionHasHook ? section : variantBlock);
+}
+
 async function resolveFooter(block, footerPath) {
 	const onPage = pageVariant(block);
 	if (onPage) {
@@ -441,13 +479,14 @@ export default async function decorate(block) {
 	const { content } = await resolveFooter(block, footerPath);
 	if (!content) return;
 
+	// Content resolved from a fragment has already been decorated by the recursive
+	// loadSections() call inside loadFragment(). Adopt it as-is; decorating again would
+	// flatten the nested structure (scraping every link into the left bar and emptying
+	// the right bar and copyright). Only inline-authored content (content === block)
+	// still needs decoration here.
 	if (content !== block) {
-		block.textContent = '';
-		const footer = document.createElement('div');
-		while (content.firstElementChild) {
-			footer.append(content.firstElementChild);
-		}
-		block.append(footer);
+		adoptDecoratedFooter(block, content);
+		return;
 	}
 
 	const footerBlocks = [...block.querySelectorAll('.columns.block[class*="footer-"]')];
