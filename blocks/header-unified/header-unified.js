@@ -749,6 +749,8 @@ function setupInteractions(header) {
     accountTrigger?.addEventListener('click', () => {
         const isOpen = account.classList.contains('open');
         closeAll();
+        // on mobile the panel replaces the drawer instead of stacking over it
+        if (!isDesktop.matches) closeMobile();
         if (!isOpen) {
             account.classList.add('open');
             accountTrigger.setAttribute('aria-expanded', 'true');

@@ -1650,6 +1650,11 @@ a.link {
   width: 100%;
 }
 
+/* the drill-down header is a mobile-only affordance */
+.header-privacy-mobile-head {
+  display: none;
+}
+
 /* --------------------------------------------------------------------------
  * mobile drawer (< 1024px)
  *
@@ -1664,9 +1669,41 @@ a.link {
     --hv1-mobile-slide: 0.32s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  /* logo left, then the account and close icons paired at the right edge */
+  .header-privacy-bar {
+    gap: $space-2xs;
+  }
+
   .header-privacy-hamburger {
     display: flex;
     z-index: 90;
+    order: 3;
+    margin-left: 0;
+  }
+
+  .header-privacy-account {
+    /* static so the panel anchors to the header instead of the icon */
+    position: static;
+    order: 2;
+    margin-left: auto;
+  }
+
+  .header-privacy-account-trigger {
+    justify-content: center;
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+  }
+
+  /* full-width sheet under the bar, so it can never clip the close button */
+  .header-privacy-account-panel {
+    right: 0;
+    left: 0;
+    width: auto;
+    max-height: calc(100vh - var(--hv1-bar-height));
+    overflow-y: auto;
+    border-right: 0;
+    border-left: 0;
   }
 
   .header-privacy-nav {
@@ -1720,8 +1757,13 @@ a.link {
     justify-content: space-between;
   }
 
-  /* the desktop underline becomes a static "drill in" chevron */
+  /*
+   * The desktop underline becomes a static "drill in" chevron. `:hover` has to be
+   * matched too: it outranks a plain `::after`, so sticky touch hover would snap
+   * the 7px chevron to `width: 100%` the moment a section is tapped.
+   */
   .header-privacy .header-privacy-trigger::after,
+  .header-privacy .header-privacy-trigger:hover::after,
   .header-privacy .header-privacy-trigger[aria-expanded="true"]::after {
     inset: 0 22px 0 auto;
     width: 7px;
@@ -1879,11 +1921,18 @@ a.link {
   .header-privacy .vehicles-flyout.cat-open .vehicles-right {
     visibility: visible;
     transform: translateX(0);
+    background-color: var(--color-white);
   }
 
   /* the rail drills into the grid, so the gradient wash becomes a chevron */
   .header-privacy .vehicles-left button {
     padding-right: 28px;
+    font-size: medium;
+  }
+
+  .header-privacy .vehicles-left button.active::before {
+    border-left: none;
+    transform: none;
   }
 
   .header-privacy .vehicles-left button::after,
