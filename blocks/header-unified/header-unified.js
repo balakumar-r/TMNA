@@ -234,7 +234,9 @@ async function decorateHeaderDefault(block, content, variantName = 'header') {
 /* Header privacy variant                                                     */
 /* -------------------------------------------------------------------------- */
 
-const isDesktop = window.matchMedia('(min-width: 900px)');
+// must stay in sync with $header-v1-breakpoint in header-unified.scss: below it the
+// privacy header renders as a mobile drawer with drill-down panels
+const isDesktop = window.matchMedia('(min-width: 1024px)');
 
 /** the fly-out content of an <li>, i.e. its direct child list */
 function getFlyoutList(li) {
@@ -485,12 +487,8 @@ function buildVehiclesItem(li) {
         right.append(slide);
     });
 
-    catList.addEventListener('click', (event) => {
-        const btn = event.target.closest('button[data-cat]');
-        if (!btn) return;
-        catList.querySelectorAll('button').forEach((b) => b.classList.toggle('active', b === btn));
-        right.querySelectorAll('.vehicles-slide').forEach((s) => s.classList.toggle('active', s.dataset.cat === btn.dataset.cat));
-    });
+    // category switching is delegated from the nav in setupInteractions, so that the
+    // same click can also drive the mobile drill-down
 
     menu.append(left, right);
     flyout.append(menu);
@@ -653,6 +651,56 @@ function setupInteractions(header) {
     const account = header.querySelector('.header-privacy-account');
     const accountTrigger = account?.querySelector('.header-privacy-account-trigger');
     const items = [...header.querySelectorAll('.header-privacy-item.has-flyout')];
+    const sections = nav.querySelector('.header-privacy-sections');
+    const mobileHead = nav.querySelector('.header-privacy-mobile-head');
+    const backButton = mobileHead?.querySelector('.header-privacy-mobile-back');
+    const headTitle = mobileHead?.querySelector('.header-privacy-mobile-title');
+
+    /*
+     * Mobile drill-down. Each level the user opens is pushed onto `drill` together
+     * with the way to undo it, so the back button (and Escape) can pop exactly one
+     * level at a time without knowing which kind of panel is on top.
+     */
+    const drill = [];
+    let listScroll = 0;
+
+    const syncDrill = () => {
+        const current = drill[drill.length - 1];
+        nav.classList.toggle('drilled', drill.length > 0);
+        if (headTitle) headTitle.textContent = current?.title || '';
+        mobileHead?.setAttribute('aria-hidden', String(!current));
+    };
+
+    const pushPanel = ({ title, open, close, origin }) => {
+        if (!drill.length) {
+            // the panel is positioned inside the (scrollable) primary list, so park
+            // the list at the top while a panel is on screen
+            listScroll = sections.scrollTop;
+            sections.scrollTop = 0;
+        }
+        open();
+        drill.push({ close, origin, title });
+        syncDrill();
+        backButton?.focus();
+    };
+
+    const popPanel = () => {
+        const current = drill.pop();
+        current?.close();
+        syncDrill();
+        if (drill.length) backButton?.focus();
+        else {
+            sections.scrollTop = listScroll;
+            current?.origin?.focus();
+        }
+    };
+
+    const resetPanels = () => {
+        while (drill.length) drill.pop().close();
+        sections.scrollTop = 0;
+        listScroll = 0;
+        syncDrill();
+    };
 
     const closeAccount = () => {
         account?.classList.remove('open');
@@ -667,7 +715,26 @@ function setupInteractions(header) {
         overlay?.classList.add('active');
     };
 
+    /** opens a nav item as a mobile drill-down level instead of a mega-menu */
+    const drillIntoItem = (item) => {
+        const trigger = item.querySelector('.header-privacy-trigger');
+        pushPanel({
+            title: trigger?.textContent.trim() || '',
+            origin: trigger,
+            open: () => {
+                item.classList.add('open');
+                trigger?.setAttribute('aria-expanded', 'true');
+            },
+            close: () => {
+                item.classList.remove('open');
+                trigger?.setAttribute('aria-expanded', 'false');
+                item.querySelector('.vehicles-flyout')?.classList.remove('cat-open');
+            },
+        });
+    };
+
     const closeAll = () => {
+        resetPanels();
         closeFlyouts(nav);
         closeAccount();
         overlay?.classList.remove('active');
@@ -697,13 +764,46 @@ function setupInteractions(header) {
         row.classList.toggle('expanded', !expanded);
     });
 
-    // fly-outs open/close strictly on click (no hover)
+    // fly-outs open/close strictly on click (no hover); on mobile they drill in
     items.forEach((item) => {
         item.querySelector('.header-privacy-trigger').addEventListener('click', () => {
+            if (!isDesktop.matches) {
+                if (!item.classList.contains('open')) drillIntoItem(item);
+                return;
+            }
             if (item.classList.contains('open')) closeAll();
             else openItem(item);
         });
     });
+
+    /*
+     * Vehicles category rail. Delegated from the nav so a single listener both swaps
+     * the desktop slide and pushes the card grid as the next mobile level.
+     */
+    nav.addEventListener('click', (event) => {
+        const button = event.target.closest('.vehicles-cats button[data-cat]');
+        if (!button) return;
+        const vehicles = button.closest('.header-privacy-item.vehicles');
+        const flyout = vehicles?.querySelector('.vehicles-flyout');
+        if (!flyout) return;
+
+        flyout.querySelectorAll('.vehicles-cats button').forEach((other) => {
+            other.classList.toggle('active', other === button);
+        });
+        flyout.querySelectorAll('.vehicles-slide').forEach((slide) => {
+            slide.classList.toggle('active', slide.dataset.cat === button.dataset.cat);
+        });
+
+        if (isDesktop.matches || flyout.classList.contains('cat-open')) return;
+        pushPanel({
+            title: button.textContent.trim(),
+            origin: button,
+            open: () => flyout.classList.add('cat-open'),
+            close: () => flyout.classList.remove('cat-open'),
+        });
+    });
+
+    backButton?.addEventListener('click', popPanel);
 
     hamburger?.addEventListener('click', () => {
         const expanded = hamburger.getAttribute('aria-expanded') === 'true';
@@ -724,6 +824,11 @@ function setupInteractions(header) {
 
     document.addEventListener('keydown', (event) => {
         if (event.key !== 'Escape') return;
+        // inside the mobile drawer Escape steps back one level before closing
+        if (!isDesktop.matches && drill.length) {
+            popPanel();
+            return;
+        }
         closeAll();
         closeMobile();
     });
@@ -763,6 +868,10 @@ async function decorateHeaderPrivacy(block, content) {
         <span></span><span></span><span></span>
       </button>
       <nav id="header-privacy-nav" class="header-privacy-nav header-v1-nav" aria-label="Primary">
+        <div class="header-privacy-mobile-head" aria-hidden="true">
+          <button type="button" class="header-privacy-mobile-back" aria-label="Back to previous menu"></button>
+          <span class="header-privacy-mobile-title"></span>
+        </div>
         <ul class="header-privacy-sections header-v1-sections"></ul>
       </nav>
     </div>

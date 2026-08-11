@@ -1650,8 +1650,20 @@ a.link {
   width: 100%;
 }
 
-/* mobile drawer (< 900px) ---------------------------------------------- */
+/* --------------------------------------------------------------------------
+ * mobile drawer (< 1024px)
+ *
+ * The drawer is a sheet below the bar that holds a stack of full-height panels.
+ * Tapping a section slides its panel in from the right over the primary list;
+ * the drill-down header (back arrow + section title) is what walks back out.
+ * Levels: 1 primary list -> 2 fly-out / vehicle categories -> 3 vehicle cards.
+ * -------------------------------------------------------------------------- */
 @media (width <= #{$header-v1-breakpoint}) {
+  .header-privacy {
+    --hv1-mobile-head: 52px;
+    --hv1-mobile-slide: 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   .header-privacy-hamburger {
     display: flex;
     z-index: 90;
@@ -1662,7 +1674,9 @@ a.link {
     inset: var(--hv1-bar-height) auto 0 0;
     z-index: 90;
     height: calc(100vh - var(--hv1-bar-height));
-    overflow-y: auto;
+
+    /* panels are absolutely placed inside, so the nav itself never scrolls */
+    overflow: hidden;
     background: var(--color-white);
     box-shadow: var(--hv1-shadow);
     transform: translateY(-100%);
@@ -1678,10 +1692,19 @@ a.link {
     visibility: visible;
   }
 
+  /* level 1 — the primary list fills the sheet and scrolls on its own */
   .header-privacy-sections {
+    position: absolute;
+    inset: 0;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .header-privacy-nav.drilled .header-privacy-sections {
+    overflow: hidden;
   }
 
   .header-privacy-item {
@@ -1697,47 +1720,112 @@ a.link {
     justify-content: space-between;
   }
 
-  .header-privacy .header-privacy-trigger::after {
-    border: solid var(--color-black);
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: $space-3xs;
-    transform: rotate(-45deg);
-    top: 0;
+  /* the desktop underline becomes a static "drill in" chevron */
+  .header-privacy .header-privacy-trigger::after,
+  .header-privacy .header-privacy-trigger[aria-expanded="true"]::after {
+    inset: 0 22px 0 auto;
+    width: 7px;
+    height: 7px;
     margin: auto;
+    padding: 0;
+    border: solid var(--color-black);
+    border-width: 2px 2px 0 0;
     background: transparent;
-    height: 1px;
-    left: 90%;
+    transform: rotate(45deg);
+    transition: none;
   }
 
   .header-privacy .header-privacy-account-label {
     display: none;
   }
 
-  /* fly-outs become inline accordions on mobile */
+  /* drill-down header — back arrow + the title of the panel on top of the stack */
+  .header-privacy-mobile-head {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: $space-3xs;
+    height: var(--hv1-mobile-head);
+    padding: 0 $space-s;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-grey-bg-dark);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition:
+      transform 0.28s ease,
+      opacity 0.28s ease,
+      visibility 0.28s ease;
+  }
+
+  .header-privacy-nav.drilled .header-privacy-mobile-head {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .header-privacy-mobile-back {
+    display: flex;
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .header-privacy-mobile-back::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    margin: auto;
+    border: solid var(--color-text-light);
+    border-width: 2px 0 0 2px;
+    transform: rotate(-45deg);
+  }
+
+  .header-privacy-mobile-title {
+    overflow: hidden;
+    color: var(--color-text-light);
+    font-size: $body-font-size-xs;
+    font-weight: $font-weight-semibold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* level 2 — the fly-out slides in over the primary list */
   .header-privacy-flyout {
-    position: static;
+    position: absolute;
+    inset: var(--hv1-mobile-head) 0 0;
+    z-index: 3;
     width: auto;
     max-width: none;
-    max-height: 0;
-    overflow: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     border: 0;
     box-shadow: none;
     opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: none;
-    transition: max-height 0.28s ease;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(100%);
+    transition:
+      transform var(--hv1-mobile-slide),
+      visibility var(--hv1-mobile-slide);
   }
 
   .header-privacy-item.open .header-privacy-flyout {
-    max-height: 1200px;
-    transform: none;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
   }
 
   .header-privacy-flyout-inner {
     flex-flow: column nowrap;
     gap: $space-3xs;
+    min-height: 100%;
     padding: $space-3xs 20px 20px;
     background: $color-off-white;
   }
@@ -1750,17 +1838,67 @@ a.link {
     display: none;
   }
 
-  /* vehicles mega-menu stacks vertically inside the mobile drawer */
+  /* vehicles — the category rail is level 2, the card grid level 3 */
+  .header-privacy-item.vehicles .vehicles-flyout {
+    overflow: hidden;
+  }
+
   .header-privacy .vehicles-menu {
-    flex-direction: column;
+    position: absolute;
+    inset: 0;
+    display: block;
     min-height: 0;
     max-height: none;
   }
 
   .header-privacy .vehicles-left {
+    position: absolute;
+    inset: 0;
     flex: 0 0 auto;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--color-white);
     border-right: 0;
-    border-bottom: 1px solid var(--color-grey-bg-dark);
+    border-bottom: 0;
+  }
+
+  .header-privacy .vehicles-right {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: $color-off-white;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition:
+      transform var(--hv1-mobile-slide),
+      visibility var(--hv1-mobile-slide);
+  }
+
+  .header-privacy .vehicles-flyout.cat-open .vehicles-right {
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  /* the rail drills into the grid, so the gradient wash becomes a chevron */
+  .header-privacy .vehicles-left button {
+    padding-right: 28px;
+  }
+
+  .header-privacy .vehicles-left button::after,
+  .header-privacy .vehicles-left button.active::after {
+    inset: 0 10px 0 auto;
+    z-index: 0;
+    width: 7px;
+    height: 7px;
+    margin: auto;
+    border: solid var(--color-black);
+    border-width: 2px 2px 0 0;
+    background: none;
+    opacity: 1;
+    transform: rotate(45deg);
+    transition: none;
   }
 
   .header-privacy .vehicle-card {
@@ -1784,7 +1922,9 @@ a.link {
   .header-privacy-nav,
   .header-privacy-overlay,
   .header-privacy-caret,
-  .header-privacy-hamburger span {
+  .header-privacy-hamburger span,
+  .header-privacy-mobile-head,
+  .header-privacy .vehicles-right {
     transition: none;
   }
 }
