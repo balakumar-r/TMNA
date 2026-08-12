@@ -85,7 +85,8 @@ header .header-unified.block[data-block-status=loaded] {
   width: auto;
   max-width: 220px;
   height: 38px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .global-site-header-navigation {
@@ -945,7 +946,8 @@ body.nav-open {
   width: auto;
   max-width: 200px;
   height: 34px;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 /* primary navigation ---------------------------------------------------- */
@@ -1692,18 +1694,63 @@ a.link {
   width: 100%;
 }
 
-/* mobile drawer (< 900px) ---------------------------------------------- */
+/* the drill-down header is a mobile-only affordance */
+.header-privacy-mobile-head {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+ * mobile drawer (< 1024px)
+ *
+ * The drawer is a sheet below the bar that holds a stack of full-height panels.
+ * Tapping a section slides its panel in from the right over the primary list;
+ * the drill-down header (back arrow + section title) is what walks back out.
+ * Levels: 1 primary list -> 2 fly-out / vehicle categories -> 3 vehicle cards.
+ * -------------------------------------------------------------------------- */
 @media (width <= 1023px) {
+  .header-privacy {
+    --hv1-mobile-head: 52px;
+    --hv1-mobile-slide: 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  /* logo left, then the account and close icons paired at the right edge */
+  .header-privacy-bar {
+    gap: 8px;
+  }
   .header-privacy-hamburger {
     display: flex;
     z-index: 90;
+    order: 3;
+    margin-left: 0;
+  }
+  .header-privacy-account {
+    /* static so the panel anchors to the header instead of the icon */
+    position: static;
+    order: 2;
+    margin-left: auto;
+  }
+  .header-privacy-account-trigger {
+    justify-content: center;
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+  }
+  /* full-width sheet under the bar, so it can never clip the close button */
+  .header-privacy-account-panel {
+    right: 0;
+    left: 0;
+    width: auto;
+    max-height: calc(100vh - var(--hv1-bar-height));
+    overflow-y: auto;
+    border-right: 0;
+    border-left: 0;
   }
   .header-privacy-nav {
     position: absolute;
     inset: var(--hv1-bar-height) auto 0 0;
     z-index: 90;
     height: calc(100vh - var(--hv1-bar-height));
-    overflow-y: auto;
+    /* panels are absolutely placed inside, so the nav itself never scrolls */
+    overflow: hidden;
     background: var(--color-white);
     box-shadow: var(--hv1-shadow);
     transform: translateY(-100%);
@@ -1715,10 +1762,18 @@ a.link {
     transform: translateY(0);
     visibility: visible;
   }
+  /* level 1 — the primary list fills the sheet and scrolls on its own */
   .header-privacy-sections {
+    position: absolute;
+    inset: 0;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .header-privacy-nav.drilled .header-privacy-sections {
+    overflow: hidden;
   }
   .header-privacy-item {
     border-bottom: 1px solid var(--color-grey-bg-dark);
@@ -1731,43 +1786,103 @@ a.link {
     font-size: 17px;
     justify-content: space-between;
   }
-  .header-privacy .header-privacy-trigger::after {
-    border: solid var(--color-black);
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 4px;
-    transform: rotate(-45deg);
-    top: 0;
+  /*
+   * The desktop underline becomes a static "drill in" chevron. `:hover` has to be
+   * matched too: it outranks a plain `::after`, so sticky touch hover would snap
+   * the 7px chevron to `width: 100%` the moment a section is tapped.
+   */
+  .header-privacy .header-privacy-trigger::after,
+  .header-privacy .header-privacy-trigger:hover::after,
+  .header-privacy .header-privacy-trigger[aria-expanded=true]::after {
+    inset: 0 22px 0 auto;
+    width: 7px;
+    height: 7px;
     margin: auto;
+    padding: 0;
+    border: solid var(--color-black);
+    border-width: 2px 2px 0 0;
     background: transparent;
-    height: 1px;
-    left: 90%;
+    transform: rotate(45deg);
+    transition: none;
   }
   .header-privacy .header-privacy-account-label {
     display: none;
   }
-  /* fly-outs become inline accordions on mobile */
+  /* drill-down header — back arrow + the title of the panel on top of the stack */
+  .header-privacy-mobile-head {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: var(--hv1-mobile-head);
+    padding: 0 16px;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-grey-bg-dark);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: transform 0.28s ease, opacity 0.28s ease, visibility 0.28s ease;
+  }
+  .header-privacy-nav.drilled .header-privacy-mobile-head {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .header-privacy-mobile-back {
+    display: flex;
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+  .header-privacy-mobile-back::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    margin: auto;
+    border: solid var(--color-text-light);
+    border-width: 2px 0 0 2px;
+    transform: rotate(-45deg);
+  }
+  .header-privacy-mobile-title {
+    overflow: hidden;
+    color: var(--color-text-light);
+    font-size: 17px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  /* level 2 — the fly-out slides in over the primary list */
   .header-privacy-flyout {
-    position: static;
+    position: absolute;
+    inset: var(--hv1-mobile-head) 0 0;
+    z-index: 3;
     width: auto;
     max-width: none;
-    max-height: 0;
-    overflow: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     border: 0;
     box-shadow: none;
     opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: none;
-    transition: max-height 0.28s ease;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(100%);
+    transition: transform var(--hv1-mobile-slide), visibility var(--hv1-mobile-slide);
   }
   .header-privacy-item.open .header-privacy-flyout {
-    max-height: 1200px;
-    transform: none;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
   }
   .header-privacy-flyout-inner {
     flex-flow: column nowrap;
     gap: 4px;
+    min-height: 100%;
     padding: 4px 20px 20px;
     background: #f6f6f6;
   }
@@ -1777,16 +1892,65 @@ a.link {
   .header-privacy-flyout-inner picture {
     display: none;
   }
-  /* vehicles mega-menu stacks vertically inside the mobile drawer */
+  /* vehicles — the category rail is level 2, the card grid level 3 */
+  .header-privacy-item.vehicles .vehicles-flyout {
+    overflow: hidden;
+  }
   .header-privacy .vehicles-menu {
-    flex-direction: column;
+    position: absolute;
+    inset: 0;
+    display: block;
     min-height: 0;
     max-height: none;
   }
   .header-privacy .vehicles-left {
+    position: absolute;
+    inset: 0;
     flex: 0 0 auto;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--color-white);
     border-right: 0;
-    border-bottom: 1px solid var(--color-grey-bg-dark);
+    border-bottom: 0;
+  }
+  .header-privacy .vehicles-right {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: #f6f6f6;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: transform var(--hv1-mobile-slide), visibility var(--hv1-mobile-slide);
+  }
+  .header-privacy .vehicles-flyout.cat-open .vehicles-right {
+    visibility: visible;
+    transform: translateX(0);
+    background-color: var(--color-white);
+  }
+  /* the rail drills into the grid, so the gradient wash becomes a chevron */
+  .header-privacy .vehicles-left button {
+    padding-right: 28px;
+    font-size: medium;
+  }
+  .header-privacy .vehicles-left button.active::before {
+    border-left: none;
+    transform: none;
+  }
+  .header-privacy .vehicles-left button::after,
+  .header-privacy .vehicles-left button.active::after {
+    inset: 0 10px 0 auto;
+    z-index: 0;
+    width: 7px;
+    height: 7px;
+    margin: auto;
+    border: solid var(--color-black);
+    border-width: 2px 2px 0 0;
+    background: none;
+    opacity: 1;
+    transform: rotate(45deg);
+    transition: none;
   }
   .header-privacy .vehicle-card {
     width: 100%;
@@ -1806,7 +1970,9 @@ a.link {
   .header-privacy-nav,
   .header-privacy-overlay,
   .header-privacy-caret,
-  .header-privacy-hamburger span {
+  .header-privacy-hamburger span,
+  .header-privacy-mobile-head,
+  .header-privacy .vehicles-right {
     transition: none;
   }
 }
@@ -2012,5 +2178,4 @@ a.link {
   .header-firm-title {
     font-size: 1.5rem;
   }
-}
-/*# sourceMappingURL=header-unified.css.map */
+}/*# sourceMappingURL=header-unified.css.map */
